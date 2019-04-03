@@ -5,7 +5,7 @@ class LoginView extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return new SingleChildScrollView(
+    return new Container(
         child: new Container(
           decoration:BoxDecoration(
             image: new DecorationImage(
@@ -13,45 +13,75 @@ class LoginView extends StatelessWidget {
               fit:BoxFit.cover
             )
           ),
-          padding: const EdgeInsets.fromLTRB(25,200,20,10),
-          child: Column(
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Text("Hello!",
-                    textAlign: TextAlign.left,
-                    style:TextStyle(
-                      fontSize: 45,
-                      color: Colors.blue,
-                      decoration: TextDecoration.none,
-                    )
-                  )
-                ]
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Text('欢迎回来',
-                    textAlign: TextAlign.left,
-                    style:TextStyle(
+          
+          child: new SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(25,120,20,10),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text("Hello!",
+                      textAlign: TextAlign.left,
+                      style:TextStyle(
                         fontSize: 45,
-                        height: 1,
+                        color: Color.fromRGBO(58, 115, 207,1),
+                        fontWeight: FontWeight.w500,
                         decoration: TextDecoration.none,
-                        color: Colors.blue
+                      )
                     )
-                  )
-                ],
-              ),
-              SizedBox(height: 80),
-              InputEdtextNameWiget(),
-              InputEdtextPasswordWiget(),
-              SizedBox(height:40),
-              LoginButtonWiget(),
-              SizedBox(height:200)
-            ],
-          )
+                  ]
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text('欢迎回来',
+                      textAlign: TextAlign.left,
+                      style:TextStyle(
+                          fontSize: 40,
+                          height: 1,
+                          fontWeight: FontWeight.w500,
+                          decoration: TextDecoration.none,
+                          color: Color.fromRGBO(58, 115, 207,1)
+                      )
+                    )
+                  ],
+                ),
+                SizedBox(height: 80),
+                InputEdtextNameWiget(),
+                InputEdtextPasswordWiget(),
+                SizedBox(height:40),
+                Stack(
+                  children: <Widget>[
+                    LoginButtonWiget(),
+                    SizedBox(height: 150),
+                    Positioned(
+                      bottom: -2,
+                      left:0,
+                      right:0,
+                      child: Text(
+                        "恒康科技Copyright©2019",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w500,
+                          decoration: TextDecoration.none,
+                          color: Color.fromRGBO(255, 255, 255, 0.5)
+                        )
+                      ),
+                      
+                    )
+                  
+          ],
         )
+              ],
+            ),
+          
+          )
+          
+        ),
+        
+        
     );
   }
 }
@@ -70,7 +100,7 @@ class InputEdtextNameWiget extends StatelessWidget{
        
         child:TextField(
           maxLines: 1,
-          scrollPadding: EdgeInsets.fromLTRB(0, 0, 0, 200),
+          scrollPadding: EdgeInsets.fromLTRB(0, 0, 0, 170),
           style:TextStyle(
             color: Colors.white
           ),
@@ -112,7 +142,7 @@ class InputEdtextPasswordWiget extends StatelessWidget{
         child:TextField(
           maxLines: 1,
           obscureText: true,
-          scrollPadding: EdgeInsets.fromLTRB(0, 0, 0, 150),
+          scrollPadding: EdgeInsets.fromLTRB(0, 0, 0, 120),
           //controller: _phonecontroller,
           keyboardType: TextInputType.text,
           decoration: InputDecoration(
@@ -145,13 +175,12 @@ class LoginButtonWiget extends StatelessWidget{
     return new SizedBox(
       child: new GestureDetector(
         onTap: (){
-          print("12123");
           Navigator.pushNamed(context, "home");
         },
         child: new Container(
         padding:EdgeInsets.fromLTRB(2, 10, 2, 10),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(3),
+          borderRadius: BorderRadius.circular(6),
           color: Color.fromRGBO(83, 84, 89, 1)
         ),
         alignment: Alignment.center,
@@ -159,7 +188,7 @@ class LoginButtonWiget extends StatelessWidget{
           '登录',
           textAlign: TextAlign.center,
           style:TextStyle(
-            fontSize: 18.0,
+            fontSize: 15.0,
             fontWeight: FontWeight.normal,
             decoration: TextDecoration.none,
             color: Color.fromRGBO(186, 187, 191, 1)
