@@ -21,7 +21,6 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget>{
       ..add(HomeIntelligent())
       ..add( HomeMy());
       super.initState();
-
   }
   @override 
   Widget build(BuildContext content){
@@ -39,23 +38,19 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget>{
         items: [
           BottomNavigationBarItem(
             icon: Icon(IconData(0xe6ce,fontFamily:'AppIconBase'),size:20),
-          
             title:Text('店铺KPI',style: TextStyle(fontSize: 14.0))
           ),
           BottomNavigationBarItem(
             icon: Icon(IconData(0xe6d0,fontFamily:'AppIconBase'),size:20),
-           
             title:Text('专属店员',style: TextStyle(fontSize: 14.0))
           ),BottomNavigationBarItem(
             icon: Icon(IconData(0xe6d2,fontFamily:'AppIconBase'),size:20),
-          
             title:Text('到货通知',style: TextStyle(fontSize: 14.0))
           ),BottomNavigationBarItem(
             icon: Icon(IconData(0xe6d1,fontFamily:'AppIconBase'),size:20),
-           
             title:Text('智能巡店',style: TextStyle(fontSize: 14.0))
           ),BottomNavigationBarItem(
-            icon: Icon(IconData(0xe6cf,fontFamily:'AppIconBase')),
+            icon: Icon(IconData(0xe61e,fontFamily:'AppIconFonts'),size:20),
             title:Text('我的',style: TextStyle(fontSize: 14.0))
           )
         ]

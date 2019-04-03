@@ -7,7 +7,7 @@ class Home extends StatelessWidget{
         return new MaterialApp(
           title: 'Welcom to Flutter1',
           theme: new ThemeData(
-            primaryColor: Colors.blue
+            primaryColor: Color.fromRGBO(70, 138, 247, 1)
           ),
           home: BottomNavigationWidget()
     );
