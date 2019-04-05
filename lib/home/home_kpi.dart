@@ -43,7 +43,6 @@ class MenuState extends State<Menu> {
       crossAxisSpacing: 0,//横向间距
       children: <Widget>[
         Container(
-          
           child:Column(
             children: <Widget>[
               Icon(IconData(0xe6c5,fontFamily:'AppIconBase'),size:28,color:Color.fromRGBO(228, 122, 105, 1)),
