@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hk_app/login/login.dart';
 class HomeMy extends StatelessWidget{
   @override
   Widget build (BuildContext context) {
@@ -127,23 +128,32 @@ class HomeMy extends StatelessWidget{
                       )
                     )
                   ),
-                  child: Row(
-                    children: <Widget>[
-                       Icon(IconData(59564, fontFamily: 'MaterialIcons'),size:28,color:Colors.red[900]),
-                       Container(
-                         margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
-                         child: Text("注销",style: TextStyle(fontSize: 18,),),
-                       ),
-                       Expanded(
-                         child:  Container(
-                           alignment: Alignment.bottomRight,
-                           child: Icon(
-                              IconData(58828, fontFamily: 'MaterialIcons',),size:36,color:Color(0xFFdddddd)
-                           ),
-                         )
-                       )
-                    ],
-                  ),
+                  child: new GestureDetector(
+                    child: Row(
+                      children: <Widget>[
+                        Icon(IconData(59564, fontFamily: 'MaterialIcons'),size:28,color:Colors.red[900]),
+                        Container(
+                          margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                          child: Text("注销",style: TextStyle(fontSize: 18,),),
+                        ),
+                        Expanded(
+                          child:  Container(
+                            alignment: Alignment.bottomRight,
+                            child: Icon(
+                                IconData(58828, fontFamily: 'MaterialIcons',),size:36,color:Color(0xFFdddddd)
+                            ),
+                          )
+                        )
+                      ],
+                    ),
+                    onTap: (){
+                       print("121");
+                       Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
+                          return new LoginView();
+                       }));
+                    },
+                  )
+                  
                 )
               ],
             ),
