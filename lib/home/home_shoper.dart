@@ -11,10 +11,12 @@ class HomeShoper extends StatelessWidget{
         elevation: 0.5,
         backgroundColor: Colors.white,
       ),
-      body: Column(
+      body: Flex(
+        direction: Axis.vertical,
         children:<Widget>[
           new HeaderPart(),
           Expanded(
+            flex:1,
             child: new Menu()
           )
         ]
@@ -36,24 +38,67 @@ class MenuState extends State<Menu> {
   }
   @override
   Widget build(BuildContext context){
-    return GridView(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        childAspectRatio: 0.8,
-        crossAxisSpacing: 3,
-        mainAxisSpacing: 3
-      ),
+    return GridView.count(
+      padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+      crossAxisCount: 3,
+      mainAxisSpacing: 0,//竖向间距
+      crossAxisSpacing: 0,//横向间距
       children: <Widget>[
         Container(
           child: Column(
             children: <Widget>[
-              Icon(IconData(0xe6c5,fontFamily:'AppIconBase'),size:28,color:Color.fromRGBO(228, 122, 105, 1)),
+              Icon(IconData(0xe6c9,fontFamily:'AppIconBase'),size:28,color:Color.fromRGBO(228, 122, 105, 1)),
               SizedBox(height:20),
-              Text("营运分析",style:TextStyle(fontSize: 13,color:Colors.black))
-            ],
+              Text("会员销售情况",style:TextStyle(fontSize: 13,color:Colors.black))
+            ]
           )
-        )
-      ],
+        ),
+        Container(
+          child: Column(
+            children: <Widget>[
+              Icon(IconData(0xe6c8,fontFamily:'AppIconBase'),size:28,color:Color.fromRGBO(228, 122, 105, 1)),
+              SizedBox(height:20),
+              Text("会员等级分布",style:TextStyle(fontSize: 13,color:Colors.black))
+            ]
+          )
+        ),
+        Container(
+          child: Column(
+            children: <Widget>[
+              Icon(IconData(0xe6cd,fontFamily:'AppIconBase'),size:28,color:Color.fromRGBO(228, 122, 105, 1)),
+              SizedBox(height:20),
+              Text("专属店员",style:TextStyle(fontSize: 13,color:Colors.black))
+            ]
+          )
+        ),
+        Container(
+          child: Column(
+            children: <Widget>[
+              Icon(IconData(0xe6cc,fontFamily:'AppIconBase'),size:28,color:Color.fromRGBO(228, 122, 105, 1)),
+              SizedBox(height:20),
+              Text("会员自定义标签",style:TextStyle(fontSize: 13,color:Colors.black))
+            ]
+          )
+        ),
+        Container(
+          child: Column(
+            children: <Widget>[
+              Icon(IconData(0xe6cb,fontFamily:'AppIconBase'),size:28,color:Color.fromRGBO(228, 122, 105, 1)),
+              SizedBox(height:20),
+              Text("线上销售",style:TextStyle(fontSize: 13,color:Colors.black))
+            ]
+          )
+        ),
+        Container(
+          child: Column(
+            children: <Widget>[
+              Icon(IconData(0xe6ca,fontFamily:'AppIconBase'),size:28,color:Color.fromRGBO(228, 122, 105, 1)),
+              SizedBox(height:20),
+              Text("顾客到店提醒",style:TextStyle(fontSize: 13,color:Colors.black))
+            ]
+          )
+        ),
+      ]
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import "package:hk_app/common/head.dart";
 class HomeIntelligent extends StatelessWidget{
   @override
   Widget build (BuildContext context) {
@@ -10,8 +11,11 @@ class HomeIntelligent extends StatelessWidget{
         elevation: 0.5,
         backgroundColor: Colors.white,
       ),
-      body: Center(
-        child: Text("这是智能巡店")
+      body: Flex(
+        direction: Axis.vertical,
+        children: <Widget>[
+          new HeaderPart(),
+        ],
       )
     );
   }
