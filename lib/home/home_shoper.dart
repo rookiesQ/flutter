@@ -47,7 +47,7 @@ class MenuState extends State<Menu> {
         Container(
           child: Column(
             children: <Widget>[
-              Icon(IconData(0xe6c9,fontFamily:'AppIconBase'),size:28,color:Color.fromRGBO(228, 122, 105, 1)),
+              Icon(IconData(0xe6c9,fontFamily:'AppIconBase'),size:28,color:Color(0XFF29bef5)),
               SizedBox(height:20),
               Text("会员销售情况",style:TextStyle(fontSize: 13,color:Colors.black))
             ]
@@ -56,7 +56,7 @@ class MenuState extends State<Menu> {
         Container(
           child: Column(
             children: <Widget>[
-              Icon(IconData(0xe6c8,fontFamily:'AppIconBase'),size:28,color:Color.fromRGBO(228, 122, 105, 1)),
+              Icon(IconData(0xe6c8,fontFamily:'AppIconBase'),size:28,color:Color(0XFFf45e4a)),
               SizedBox(height:20),
               Text("会员等级分布",style:TextStyle(fontSize: 13,color:Colors.black))
             ]
@@ -65,7 +65,7 @@ class MenuState extends State<Menu> {
         Container(
           child: Column(
             children: <Widget>[
-              Icon(IconData(0xe6cd,fontFamily:'AppIconBase'),size:28,color:Color.fromRGBO(228, 122, 105, 1)),
+              Icon(IconData(0xe6cd,fontFamily:'AppIconBase'),size:28,color:Color(0xFF1c87ff)),
               SizedBox(height:20),
               Text("专属店员",style:TextStyle(fontSize: 13,color:Colors.black))
             ]
@@ -74,7 +74,7 @@ class MenuState extends State<Menu> {
         Container(
           child: Column(
             children: <Widget>[
-              Icon(IconData(0xe6cc,fontFamily:'AppIconBase'),size:28,color:Color.fromRGBO(228, 122, 105, 1)),
+              Icon(IconData(0xe6cc,fontFamily:'AppIconBase'),size:28,color:Color(0xfff8507b)),
               SizedBox(height:20),
               Text("会员自定义标签",style:TextStyle(fontSize: 13,color:Colors.black))
             ]
@@ -83,7 +83,7 @@ class MenuState extends State<Menu> {
         Container(
           child: Column(
             children: <Widget>[
-              Icon(IconData(0xe6cb,fontFamily:'AppIconBase'),size:28,color:Color.fromRGBO(228, 122, 105, 1)),
+              Icon(IconData(0xe6cb,fontFamily:'AppIconBase'),size:28,color:Color(0xff1c87ff)),
               SizedBox(height:20),
               Text("线上销售",style:TextStyle(fontSize: 13,color:Colors.black))
             ]
@@ -92,7 +92,7 @@ class MenuState extends State<Menu> {
         Container(
           child: Column(
             children: <Widget>[
-              Icon(IconData(0xe6ca,fontFamily:'AppIconBase'),size:28,color:Color.fromRGBO(228, 122, 105, 1)),
+              Icon(IconData(0xe6ca,fontFamily:'AppIconBase'),size:28,color:Color(0xfff8507b)),
               SizedBox(height:20),
               Text("顾客到店提醒",style:TextStyle(fontSize: 13,color:Colors.black))
             ]

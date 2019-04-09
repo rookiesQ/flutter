@@ -41,7 +41,7 @@ class HomeMy extends StatelessWidget{
             child: Column(
               children: <Widget>[
                 Container(
-                  padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  padding:EdgeInsets.fromLTRB(10, 5, 10, 5),
                   decoration: BoxDecoration(
                     border: new Border(
                       bottom: BorderSide(
@@ -54,7 +54,7 @@ class HomeMy extends StatelessWidget{
                        Icon(IconData(57345, fontFamily: 'MaterialIcons'),size:28,color:Color(0xFF03a9f4)),
                        Container(
                          margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
-                         child: Text("版本号",style: TextStyle(fontSize: 18),),
+                         child: Text("版本号",style: TextStyle(fontSize: 14),),
                        ),
                        Expanded(
                          child:  Container(
@@ -68,7 +68,7 @@ class HomeMy extends StatelessWidget{
                   ),
                 ),
                 Container(
-                  padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  padding:EdgeInsets.fromLTRB(10, 5, 10, 5),
                   decoration: BoxDecoration(
                     border: new Border(
                       bottom: BorderSide(
@@ -81,7 +81,7 @@ class HomeMy extends StatelessWidget{
                        Icon(IconData(59568, fontFamily: 'MaterialIcons'),size:28,color:Color.fromRGBO(245, 195, 68, 1)),
                        Container(
                          margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
-                         child: Text("员工保密制度",style: TextStyle(fontSize: 18),),
+                         child: Text("员工保密制度",style: TextStyle(fontSize: 14),),
                        ),
                        Expanded(
                          child:  Container(
@@ -94,7 +94,7 @@ class HomeMy extends StatelessWidget{
                     ],
                   ),
                 ),Container(
-                  padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  padding:EdgeInsets.fromLTRB(10, 5, 10, 5),
                   decoration: BoxDecoration(
                     border: new Border(
                       bottom: BorderSide(
@@ -107,7 +107,7 @@ class HomeMy extends StatelessWidget{
                        Icon(IconData(58154, fontFamily: 'MaterialIcons'),size:28,color:Color.fromRGBO(65, 133, 246, 1)),
                        Container(
                          margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
-                         child: Text("修改密码",style: TextStyle(fontSize: 18),),
+                         child: Text("修改密码",style: TextStyle(fontSize: 14),),
                        ),
                        Expanded(
                          child:  Container(
@@ -120,7 +120,7 @@ class HomeMy extends StatelessWidget{
                     ],
                   ),
                 ),Container(
-                  padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  padding:EdgeInsets.fromLTRB(10, 5, 10,5),
                   decoration: BoxDecoration(
                     border: new Border(
                       bottom: BorderSide(
@@ -134,7 +134,7 @@ class HomeMy extends StatelessWidget{
                         Icon(IconData(59564, fontFamily: 'MaterialIcons'),size:28,color:Colors.red[900]),
                         Container(
                           margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
-                          child: Text("注销",style: TextStyle(fontSize: 18,),),
+                          child: Text("注销",style: TextStyle(fontSize: 14),),
                         ),
                         Expanded(
                           child:  Container(
