@@ -11,6 +11,28 @@ class HomeKpi extends StatelessWidget{
         elevation: 0.5,
         backgroundColor: Colors.white,
       ),
+      drawer: new Drawer(
+        child: ListView(
+          children: <Widget>[
+            new ListTile(
+              title: new Text("识花"),
+              trailing: new Icon(Icons.local_florist),
+            ),
+            new ListTile(
+              title: new Text("搜索"),
+              trailing: new Icon(Icons.search),
+              onTap: (){
+                Navigator.of(context).pushNamed("/webview");
+              },
+            ),
+            new Divider(),
+            new ListTile(
+              title: new Text("设置"),
+              trailing: new Icon(Icons.settings),
+            ),
+          ],
+        )
+      ),
       body: new Column(
         children: <Widget>[
           HeaderPart(),
@@ -18,7 +40,8 @@ class HomeKpi extends StatelessWidget{
             child: new Menu(),
           )
         ]
-      )
+      ),
+      
     );
   }
 }
