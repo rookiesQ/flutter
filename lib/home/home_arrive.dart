@@ -46,7 +46,7 @@ class MenuState extends State<Menu> {
         Container(
           child: Column(
             children: <Widget>[
-              Icon(IconData(0xe6ba,fontFamily:'AppIconBase'),size:28,color:Color.fromRGBO(228, 122, 105, 1)),
+              Icon(IconData(0xe6ba,fontFamily:'AppIconBase'),size:28,color:Color(0xfff8507b)),
               SizedBox(height:20),
               Text("品牌到货通知",style:TextStyle(fontSize: 13,color:Colors.black))
             ]
@@ -55,7 +55,7 @@ class MenuState extends State<Menu> {
         Container(
           child: Column(
             children: <Widget>[
-              Icon(IconData(0xe6b9,fontFamily:'AppIconBase'),size:28,color:Color.fromRGBO(228, 122, 105, 1)),
+              Icon(IconData(0xe6b9,fontFamily:'AppIconBase'),size:28,color:Color(0xfffbad33)),
               SizedBox(height:20),
               Text("周品牌到货计划",style:TextStyle(fontSize: 13,color:Colors.black))
             ]
