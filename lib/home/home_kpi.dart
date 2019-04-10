@@ -17,6 +17,9 @@ class HomeKpi extends StatelessWidget{
             new ListTile(
               title: new Text("识花"),
               trailing: new Icon(Icons.local_florist),
+               onTap: (){
+                Navigator.of(context).pushNamed("/baidu");
+              },
             ),
             new ListTile(
               title: new Text("营销之星"),
@@ -29,6 +32,9 @@ class HomeKpi extends StatelessWidget{
             new ListTile(
               title: new Text("设置"),
               trailing: new Icon(Icons.settings),
+               onTap: (){
+                Navigator.of(context).pushNamed("/test");
+              },
             ),
           ],
         )

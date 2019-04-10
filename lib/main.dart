@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'app.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget{

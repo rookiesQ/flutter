@@ -15,6 +15,21 @@ class Home extends StatelessWidget{
               appBar: new AppBar(
                 title: new Text("Widget webview"),
               ),
+              
+            ),
+            "/baidu": (_) => new WebviewScaffold(
+              url: "https:www.baidu.com",
+              appBar: new AppBar(
+                title: new Text("Widget webview"),
+              ),
+              
+            ),
+            "/test": (_) => new WebviewScaffold(
+              url: "https:www.coding.net",
+              appBar: new AppBar(
+                title: new Text("Widget webview"),
+              ),
+              
             )
           },
           
