@@ -19,7 +19,7 @@ class HomeKpi extends StatelessWidget{
               trailing: new Icon(Icons.local_florist),
             ),
             new ListTile(
-              title: new Text("搜索"),
+              title: new Text("营销之星"),
               trailing: new Icon(Icons.search),
               onTap: (){
                 Navigator.of(context).pushNamed("/webview");
