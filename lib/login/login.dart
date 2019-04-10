@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:hk_app/home/home.dart';
 // 登录界面
 class LoginView extends StatelessWidget {
   
@@ -175,8 +175,11 @@ class LoginButtonWiget extends StatelessWidget{
     return new SizedBox(
       child: new GestureDetector(
         onTap: (){
-          Navigator.pushNamed(context, "home");
-        },
+          Navigator.of(context).pushAndRemoveUntil(
+            new MaterialPageRoute(
+                builder: (context) => Home()),
+            (route) => route == null);
+          },
         child: new Container(
         padding:EdgeInsets.fromLTRB(2, 10, 2, 10),
         decoration: BoxDecoration(

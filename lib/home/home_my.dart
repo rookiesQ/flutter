@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hk_app/login/login.dart';
+
 class HomeMy extends StatelessWidget{
   @override
   Widget build (BuildContext context) {
@@ -147,10 +148,11 @@ class HomeMy extends StatelessWidget{
                       ],
                     ),
                     onTap: (){
-                       print("121");
-                       Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
-                          return new LoginView();
-                       }));
+                       Navigator.of(context).pushAndRemoveUntil(
+                        new MaterialPageRoute(
+                            builder: (context) => new LoginView()),
+                        (route) => route == null);  
+
                     },
                   )
                   
