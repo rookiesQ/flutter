@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:hk_app/login/login.dart';
 class SplashScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -72,18 +71,12 @@ class SplashScreenState extends State<SplashScreen> {
 
   void onDonePress() {
     _setHasSkip();
-    Navigator.of(context).pushAndRemoveUntil(
-        new MaterialPageRoute(
-            builder: (context) => new LoginView()),
-            (route) => route == null);
+    Navigator.of(context).pushNamed('/login');
   }
 
   void onSkipPress() {
     _setHasSkip();
-    Navigator.of(context).pushAndRemoveUntil(
-        new MaterialPageRoute(
-            builder: (context) => new LoginView()),
-            (route) => route == null);
+    Navigator.of(context).pushNamed('/login');
   }
 
   void _setHasSkip ()async {

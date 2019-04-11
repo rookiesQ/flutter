@@ -5,17 +5,17 @@ class LoginView extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return new Container(
-        child: new Container(
+    return Scaffold(
+      body:new Container(
           decoration:BoxDecoration(
             image: new DecorationImage(
               image:AssetImage('assets/images/bg.png'),
               fit:BoxFit.cover
             )
           ),
-          
-          child: new SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25,120,20,10),
+          child: Center(
+            child:new SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(25,70,20,10),
             child: Column(
               children: <Widget>[
                 Row(
@@ -51,37 +51,24 @@ class LoginView extends StatelessWidget {
                 InputEdtextNameWiget(),
                 InputEdtextPasswordWiget(),
                 SizedBox(height:40),
-                Stack(
-                  children: <Widget>[
-                    LoginButtonWiget(),
-                    SizedBox(height: 150),
-                    Positioned(
-                      bottom: -2,
-                      left:0,
-                      right:0,
-                      child: Text(
-                        "恒康科技Copyright©2019",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w500,
-                          decoration: TextDecoration.none,
-                          color: Color.fromRGBO(255, 255, 255, 0.5)
-                        )
-                      ),
-                      
+                LoginButtonWiget(),
+                SizedBox(height: 150),
+                Text(
+                    "恒康科技Copyright©2019",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                      decoration: TextDecoration.none,
+                      color: Color.fromRGBO(255, 255, 255, 0.5)
                     )
-                  
-          ],
-        )
+                  ),
               ],
             ),
-          
           )
-          
-        ),
-        
-        
+        )
+      ),
+      
     );
   }
 }

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hk_app/launch.dart';
-
-class App extends StatelessWidget{
+import 'package:hk_app/login/login.dart';
+class App extends StatefulWidget{
+  @override
+  _AppStateWidget createState()=> new _AppStateWidget();
+}
+class _AppStateWidget extends State<App> {
   @override
   Widget build(BuildContext context) {
         return new MaterialApp(
@@ -9,10 +13,12 @@ class App extends StatelessWidget{
           theme: new ThemeData(
             primaryColor: Colors.white
           ),
-          home: new Scaffold(
-            body: new SplashScreen(),
-            resizeToAvoidBottomPadding: false,
-          )
+          initialRoute: '/launch',
+          routes: {
+            '/': (BuildContext context) => new SplashScreen(),
+            '/launch': (BuildContext context) => new SplashScreen(),
+            '/login': (BuildContext context) => new LoginView(),
+          },
           
     );
   }
