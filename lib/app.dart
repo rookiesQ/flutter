@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hk_app/launch.dart';
-void main() => runApp(new App());
 
 class App extends StatelessWidget{
   @override

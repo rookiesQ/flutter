@@ -177,7 +177,7 @@ class LoginButtonWiget extends StatelessWidget{
         onTap: (){
           Navigator.of(context).pushAndRemoveUntil(
             new MaterialPageRoute(
-                builder: (context) => Home()),
+                builder: (context) => HomeApp()),
             (route) => route == null);
           },
         child: new Container(

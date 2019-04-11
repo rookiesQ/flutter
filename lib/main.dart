@@ -10,9 +10,7 @@ class MyApp extends StatelessWidget{
           theme: new ThemeData(
             primaryColor: Colors.white
           ),
-          home: new Scaffold(
-            body: new App()
-          ),
+          home: new App(),
           
     );
   }

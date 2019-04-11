@@ -74,7 +74,7 @@ class SplashScreenState extends State<SplashScreen> {
     _setHasSkip();
     Navigator.of(context).pushAndRemoveUntil(
         new MaterialPageRoute(
-            builder: (context) => new App()),
+            builder: (context) => new LoginView()),
             (route) => route == null);
   }
 
@@ -82,7 +82,7 @@ class SplashScreenState extends State<SplashScreen> {
     _setHasSkip();
     Navigator.of(context).pushAndRemoveUntil(
         new MaterialPageRoute(
-            builder: (context) => new App()),
+            builder: (context) => new LoginView()),
             (route) => route == null);
   }
 
