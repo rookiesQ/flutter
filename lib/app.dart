@@ -7,22 +7,26 @@ class App extends StatefulWidget{
   _AppStateWidget createState()=> new _AppStateWidget();
 }
 class _AppStateWidget extends State<App> {
-  bool isFirst = false;
-  String defaultRoute = '/launch';
+  var defaultRoute = null;
   void initState() {
     super.initState();
-     loadIsFirst();
-     if (isFirst == false){
-       defaultRoute = "/";
-     } else {
-       defaultRoute = "/login";
-     }
+    new Future.delayed(Duration(seconds: 2),(){
+      loadIsFirst();
+    });    
   }
-  loadIsFirst () async{
+  void loadIsFirst () async{
     SharedPreferences  pref = await SharedPreferences.getInstance();
+    bool isFirst = pref.getBool("hasSkip");
     setState((){
-      isFirst = pref.getBool("hasSkip");
+      if (isFirst== null|| !isFirst) {
+        defaultRoute = "/";
+      } else {
+       defaultRoute = "/login";
+      }
+      print(isFirst);
+      print(defaultRoute);
     });
+    
   }
   @override
   Widget build(BuildContext context) {
