@@ -16,7 +16,6 @@ class _AppStateWidget extends State<App> {
           initialRoute: '/launch',
           routes: {
             '/': (BuildContext context) => new SplashScreen(),
-            '/launch': (BuildContext context) => new SplashScreen(),
             '/login': (BuildContext context) => new LoginView(),
           },
           
