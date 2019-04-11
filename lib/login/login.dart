@@ -52,7 +52,7 @@ class LoginView extends StatelessWidget {
                 InputEdtextPasswordWiget(),
                 SizedBox(height:40),
                 LoginButtonWiget(),
-                SizedBox(height: 150),
+                SizedBox(height: 120),
                 Text(
                     "恒康科技Copyright©2019",
                     textAlign: TextAlign.center,
