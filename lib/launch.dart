@@ -93,14 +93,31 @@ class SplashScreenState extends State<SplashScreen> {
         //onSkipPress: this.onSkipPress,
         nameSkipBtn: "",
         nameNextBtn: "",
-        nameDoneBtn: "进入",
-        colorDoneBtn: Color(0xff1c87ff),
-        styleNameDoneBtn:TextStyle(
-          color: Color(0xff000000),
-        ),
-        renderDoneBtn:Container(
-          color:Color(0xffffffff)
+        nameDoneBtn: "立即进入",
+        isShowDotIndicator:true,
+        styleNameDoneBtn: TextStyle(
+          color:Color(0xff000000)
         )
+        /*renderDoneBtn: Container(
+          padding:EdgeInsets.fromLTRB(2, 10, 2, 10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(6),
+            color: Color.fromRGBO(83, 84, 89, 1)
+          ),
+          alignment: Alignment.center,
+          child:Text(
+            '立即进入',
+            textAlign: TextAlign.center,
+            style:TextStyle(
+              fontSize: 15.0,
+              fontWeight: FontWeight.normal,
+              decoration: TextDecoration.none,
+              color: Color.fromRGBO(186, 187, 191, 1)
+            )
+          )
+                    
+        )*/
+
     );
   }
 
