@@ -72,7 +72,7 @@ flutter:
      - family: AppIconBase
        fonts:
          - asset: assets/fonts/local/iconfont.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf 阿里巴巴
   #         weight: 700
   #
   # For details regarding fonts from package dependencies,

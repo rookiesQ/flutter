@@ -61,7 +61,7 @@ class HomeMy extends StatelessWidget{
                          child:  Container(
                            alignment: Alignment.bottomRight,
                            child: Icon(
-                              IconData(58828, fontFamily: 'MaterialIcons',),size:36,color:Color(0xFFdddddd)
+                              IconData(58828, fontFamily: 'MaterialIcons',),size:26,color:Color(0xFFdddddd)
                            ),
                          )
                        )
@@ -88,7 +88,7 @@ class HomeMy extends StatelessWidget{
                          child:  Container(
                            alignment: Alignment.bottomRight,
                            child: Icon(
-                              IconData(58828, fontFamily: 'MaterialIcons',),size:36,color:Color(0xFFdddddd)
+                              IconData(58828, fontFamily: 'MaterialIcons',),size:26,color:Color(0xFFdddddd)
                            ),
                          )
                        )
@@ -114,22 +114,22 @@ class HomeMy extends StatelessWidget{
                          child:  Container(
                            alignment: Alignment.bottomRight,
                            child: Icon(
-                              IconData(58828, fontFamily: 'MaterialIcons',),size:36,color:Color(0xFFdddddd)
+                              IconData(58828, fontFamily: 'MaterialIcons',),size:26,color:Color(0xFFdddddd)
                            ),
                          )
                        )
                     ],
                   ),
-                ),Container(
-                  padding:EdgeInsets.fromLTRB(10, 5, 10,5),
-                  decoration: BoxDecoration(
-                    border: new Border(
-                      bottom: BorderSide(
-                        color: Color(0xFFf2f2f2)
+                ),GestureDetector(
+                  child: Container(
+                    padding:EdgeInsets.fromLTRB(10, 5, 10,5),
+                    decoration: BoxDecoration(
+                      border: new Border(
+                        bottom: BorderSide(
+                          color: Color(0xFFf2f2f2)
+                        )
                       )
-                    )
-                  ),
-                  child: new GestureDetector(
+                    ),
                     child: Row(
                       children: <Widget>[
                         Icon(IconData(59564, fontFamily: 'MaterialIcons'),size:28,color:Colors.red[900]),
@@ -140,22 +140,23 @@ class HomeMy extends StatelessWidget{
                         Expanded(
                           child:  Container(
                             alignment: Alignment.bottomRight,
+                            
                             child: Icon(
-                                IconData(58828, fontFamily: 'MaterialIcons',),size:36,color:Color(0xFFdddddd)
+                                IconData(58828, fontFamily: 'MaterialIcons'),size:26,color:Color(0xFFdddddd),
+                               
                             ),
                           )
                         )
                       ],
-                    ),
-                    onTap: (){
+                    )
+                  ),
+                  onTap: (){
                        Navigator.of(context).pushAndRemoveUntil(
                         new MaterialPageRoute(
                             builder: (context) => new LoginView()),
                         (route) => route == null);  
 
-                    },
-                  )
-                  
+                  },
                 )
               ],
             ),
