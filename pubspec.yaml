@@ -29,6 +29,7 @@ dependencies:
   flutter_webview_plugin: any
   fluttertoast: ^3.0.1
   oktoast: ^2.0.0
+  json_serializable: ^2.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -51,6 +52,8 @@ flutter:
      - assets/images/common/bsbg.png
      - assets/images/common/common.png
      - assets/images/common/my_portrait.png
+     - assets/launch_image.png
+     - assets/launch3.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

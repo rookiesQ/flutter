@@ -29,10 +29,10 @@ class _LoginView extends State<LoginView> {
         print(_pwdcontroller.text);
         print(_phonecontroller.text);
         Navigator.of(context).pushAndRemoveUntil(
-                        new MaterialPageRoute(
-                            builder: (context) => HomeApp()
-                        ),
-                        (route) => route == null);
+          new MaterialPageRoute(
+              builder: (context) => HomeApp()
+          ),
+        (route) => route == null);
     } else {
         if (_phonecontroller.text.length == 0){
           Fluttertoast.showToast(

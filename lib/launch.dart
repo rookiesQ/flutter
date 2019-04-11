@@ -19,39 +19,39 @@ class SplashScreenState extends State<SplashScreen> {
 
     slides.add(
       new Slide(
-        title: "YY Dash 个人测试",
+        title: "",
         description:
-        "page one",
+        "",
         styleDescription: TextStyle(
             color: Colors.white,
             fontSize: 20.0,
             fontFamily: 'Raleway'),
-        marginDescription: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 70.0),
-        colorBegin: Color(0xffFFDAB9),
-        colorEnd: Color(0xff40E0D0),
-        directionColorBegin: Alignment.topLeft,
-        directionColorEnd: Alignment.bottomRight,
+        //marginDescription: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 70.0),
+        backgroundImage: 'assets/launch_image.png',
+        backgroundOpacity: 0,
+        //directionColorBegin: Alignment.topLeft,
+        //directionColorEnd: Alignment.bottomRight,
       ),
     );
 
     slides.add(
       new Slide(
-        title: "test",
+        title: "",
         description:
-        " 啊实打实多",
+        " ",
         styleDescription: TextStyle(
             color: Colors.white,
             fontSize: 20.0,
             fontFamily: 'Raleway'),
         marginDescription: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 70.0),
-        colorBegin: Color(0xffFFFACD),
-        colorEnd: Color(0xffFF6347),
-        directionColorBegin: Alignment.topLeft,
-        directionColorEnd: Alignment.bottomRight,
+        backgroundImage: 'assets/launch3.png',
+        backgroundOpacity: 0,
+        //directionColorBegin: Alignment.topLeft,
+        //directionColorEnd: Alignment.bottomRight,
       ),
     );
 
-    slides.add(
+    /*slides.add(
       new Slide(
         title: "Welcome",
         description:
@@ -66,7 +66,7 @@ class SplashScreenState extends State<SplashScreen> {
         directionColorBegin: Alignment.topLeft,
         directionColorEnd: Alignment.bottomRight,
       ),
-    );
+    );*/
   }
 
   void onDonePress() {
@@ -89,11 +89,18 @@ class SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return IntroSlider(
         slides: this.slides,
-      onDonePress: this.onDonePress,
-      //onSkipPress: this.onSkipPress,
-      nameSkipBtn: "跳过",
-      nameNextBtn: "下一页",
-      nameDoneBtn: "进入",
+        onDonePress: this.onDonePress,
+        //onSkipPress: this.onSkipPress,
+        nameSkipBtn: "",
+        nameNextBtn: "",
+        nameDoneBtn: "进入",
+        colorDoneBtn: Color(0xff1c87ff),
+        styleNameDoneBtn:TextStyle(
+          color: Color(0xff000000),
+        ),
+        renderDoneBtn:Container(
+          color:Color(0xffffffff)
+        )
     );
   }
 
