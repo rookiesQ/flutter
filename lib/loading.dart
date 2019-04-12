@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:hk_app/login/login.dart';
 //加载页面
 class LoadingPage extends StatefulWidget {
   @override
@@ -15,7 +14,7 @@ class _LoadingState extends State<LoadingPage> {
   void initState(){
     super.initState();
     //在加载页面停顿3秒
-    new Future.delayed(Duration(seconds: 2),(){
+    new Future.delayed(Duration(seconds: 1),(){
       _getHasSkip();
     });
   }
@@ -26,10 +25,7 @@ class _LoadingState extends State<LoadingPage> {
     if(hasSkip==null||!hasSkip){
       Navigator.of(context).pushReplacementNamed("splash");
     }else {
-      Navigator.of(context).pushAndRemoveUntil(
-          new MaterialPageRoute(
-              builder: (context) => LoginView()),
-              (route) => route == null);
+       Navigator.of(context).pushReplacementNamed("login");
     }
   }
 
