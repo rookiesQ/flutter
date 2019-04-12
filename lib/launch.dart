@@ -71,12 +71,12 @@ class SplashScreenState extends State<SplashScreen> {
 
   void onDonePress() {
     _setHasSkip();
-    Navigator.of(context).pushNamedAndRemoveUntil('/login',(route)=> route == null);
+    Navigator.of(context).pushNamedAndRemoveUntil('login',(route)=> route == null);
   }
 
   void onSkipPress() {
     _setHasSkip();
-    Navigator.of(context).pushNamedAndRemoveUntil('/login',(route)=> route == null);
+    Navigator.of(context).pushNamedAndRemoveUntil('login',(route)=> route == null);
   }
 
   void _setHasSkip ()async {
