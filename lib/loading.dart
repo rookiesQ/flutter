@@ -32,14 +32,18 @@ class _LoadingState extends State<LoadingPage> {
   @override
   Widget build(BuildContext context) {
     return new Center(
-      child: Container(
-        decoration:BoxDecoration(
-            image: new DecorationImage(
-              image:AssetImage('assets/launch_image.png'),
-              fit:BoxFit.cover
-            )
-          ),
-      ),
+      child:Stack(
+        children: <Widget>[
+           Container(
+              decoration:BoxDecoration(
+                  image: new DecorationImage(
+                    image:AssetImage('assets/launch_image.png'),
+                    fit:BoxFit.cover
+                  )
+                ),
+            ),
+        ],
+      )
     );
   }
 
