@@ -42,7 +42,7 @@ class HomeMy extends StatelessWidget{
             child: Column(
               children: <Widget>[
                 Container(
-                  padding:EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
                   decoration: BoxDecoration(
                     border: new Border(
                       bottom: BorderSide(
@@ -69,7 +69,7 @@ class HomeMy extends StatelessWidget{
                   ),
                 ),
                 Container(
-                  padding:EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
                   decoration: BoxDecoration(
                     border: new Border(
                       bottom: BorderSide(
@@ -95,7 +95,7 @@ class HomeMy extends StatelessWidget{
                     ],
                   ),
                 ),Container(
-                  padding:EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
                   decoration: BoxDecoration(
                     border: new Border(
                       bottom: BorderSide(
@@ -122,7 +122,7 @@ class HomeMy extends StatelessWidget{
                   ),
                 ),GestureDetector(
                   child: Container(
-                    padding:EdgeInsets.fromLTRB(10, 5, 10,5),
+                    padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
                     decoration: BoxDecoration(
                       border: new Border(
                         bottom: BorderSide(
