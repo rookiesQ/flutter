@@ -5,6 +5,8 @@ import '../home/home_intelligent.dart';
 import '../home/home_my.dart';
 import '../home/home_arrive.dart';
 
+// 引入列表组件
+import 'package:hk_app/report/list/list.dart';
 class HomeApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,10 @@ class HomeApp extends StatelessWidget{
           home: new Scaffold(
             body: new HomeWidget(),
             resizeToAvoidBottomPadding: false,
-          )
+          ),
+          routes: <String, WidgetBuilder>{
+            "/list": (_) => ListViews(),
+          },
           
     );
   }

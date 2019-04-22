@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import "package:hk_app/common/head.dart";
+// 引入跳转的页面
+import "package:hk_app/report/animate/animate.dart";
 class HomeKpi extends StatelessWidget{
   @override
   Widget build (BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+       
         title: Text("店铺KPI",style: TextStyle(color: Colors.black),),
         brightness: Brightness.light,
         centerTitle: true,
@@ -72,20 +75,37 @@ class MenuState extends State<Menu> {
       crossAxisSpacing: 0,//横向间距
       children: <Widget>[
         Container(
-          child:Column(
-            children: <Widget>[
-              Icon(IconData(0xe6c5,fontFamily:'AppIconBase'),size:28,color:Color.fromRGBO(228, 122, 105, 1)),
-              SizedBox(height:20),
-              Text("营运分析",style:TextStyle(fontSize: 13,color:Colors.black))
-            ],
+          child:GestureDetector(
+            child:Column(
+              children: <Widget>[
+                Icon(IconData(0xe6c5,fontFamily:'AppIconBase'),size:28,color:Color.fromRGBO(228, 122, 105, 1)),
+                SizedBox(height:20),
+                Text("特效动画",style:TextStyle(fontSize: 13,color:Colors.black))
+              ],
+            ),
+            onTap: (){
+              Navigator.of(context).push(
+                new MaterialPageRoute(
+                    builder: (context) => Animate()
+                ),
+              );
+            },
           )
+          
         ),
         Container(
           child:Column(
             children: <Widget>[
-              Icon(IconData(0xe6be,fontFamily:'AppIconBase'),size:26,color:Color.fromRGBO(65, 133, 246, 1)),
-              SizedBox(height:20),
-              Text("业绩KPI指标",style:TextStyle(fontSize: 13,color:Colors.black))
+              GestureDetector(
+                child: Column(children: <Widget>[
+                    Icon(IconData(0xe6be,fontFamily:'AppIconBase'),size:26,color:Color.fromRGBO(65, 133, 246, 1)),
+                    SizedBox(height:20),
+                    Text("列表",style:TextStyle(fontSize: 13,color:Colors.black))
+                ],),
+                onTap: () {
+                  Navigator.of(context).pushNamed('/list');
+                }
+              ),
             ],
           )
         ),
