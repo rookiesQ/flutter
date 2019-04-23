@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-class ListViews extends StatelessWidget{
+class ListViews extends StatefulWidget{
+  @override
+  ListState createState() => ListState();
+}
+class ListState extends State<ListViews>{
   @override
   Widget build (BuildContext context) {
     return Scaffold(
@@ -14,6 +18,5 @@ class ListViews extends StatelessWidget{
     );
   }
 }
-
 
 

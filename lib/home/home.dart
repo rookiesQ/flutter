@@ -4,6 +4,10 @@ import '../home/home_my.dart';
 import 'package:hk_app/login/login.dart';
 // 引入列表组件
 import 'package:hk_app/report/list/list.dart';
+// 引入nav组件
+import 'package:hk_app/report/nav/nav.dart';
+// 引入列表组件
+import 'package:hk_app/report/animate/animate.dart';
 
 class HomeApp extends StatefulWidget{
     @override
@@ -185,6 +189,8 @@ class HomeAppState extends State<HomeApp> {
             ),
             routes: <String, WidgetBuilder>{
               "/list": (_) => ListViews(),
+              "/nav": (_) => Nav(),
+              "/animate": (_) => Animate(),
             },
             
       );

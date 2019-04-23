@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-// 引入跳转的页面
-import "package:hk_app/report/animate/animate.dart";
 class HomeKpi extends StatelessWidget{
   @override
   Widget build (BuildContext context) {
@@ -46,11 +44,7 @@ class MenuState extends State<Menu> {
               ],
             ),
             onTap: (){
-              Navigator.of(context).push(
-                new MaterialPageRoute(
-                    builder: (context) => Animate()
-                ),
-              );
+               Navigator.of(context).pushNamed('/animate');
             },
           )
           
@@ -68,14 +62,17 @@ class MenuState extends State<Menu> {
             Navigator.of(context).pushNamed('/list');
           }
         ),
-        Container(
+         GestureDetector(
           child:Column(
             children: <Widget>[
               Icon(IconData(0xe6c3,fontFamily:'AppIconBase'),size:26,color:Color.fromRGBO(229, 93, 124, 1)),
               SizedBox(height:20),
               Text("可滑动的导航栏",style:TextStyle(fontSize: 13,color:Colors.black))
             ],
-          )
+          ),
+          onTap: () {
+            Navigator.of(context).pushNamed('/nav');
+          }
         ),
         
         
