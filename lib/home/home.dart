@@ -14,7 +14,17 @@ class HomeApp extends StatefulWidget{
     HomeAppState createState() => HomeAppState();
 }
 class HomeAppState extends State<HomeApp> {
-  var showHead = true; // 是否显示head
+    bool showHead = true;
+    @override
+    void initState() {
+      print(showHead);
+      super.initState();
+    }
+    void setHead(val) {
+      setState(() {
+        showHead = val;
+      });
+    }
     @override
     Widget build(BuildContext context) {
           return new MaterialApp(
@@ -28,7 +38,7 @@ class HomeAppState extends State<HomeApp> {
                 brightness: Brightness.light,
                 centerTitle: true,
                 elevation: 0.5
-              ): '',
+              ): null,
               drawer: new Drawer(
                 child: ListView(
                   padding: EdgeInsets.zero,
@@ -64,33 +74,38 @@ class HomeAppState extends State<HomeApp> {
                         ),
                       ),
                     ),
-                    Container(
-                  padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
-                  decoration: BoxDecoration(
-                    border: new Border(
-                      bottom: BorderSide(
-                        color: Color(0xFFf2f2f2)
-                      )
-                    )
-                  ),
-                  child: Row(
-                    children: <Widget>[
-                       Icon(IconData(57345, fontFamily: 'MaterialIcons'),size:28,color:Color(0xFF03a9f4)),
-                       Container(
-                         margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
-                         child: Text("版本号",style: TextStyle(fontSize: 14),),
-                       ),
-                       Expanded(
-                         child:  Container(
-                           alignment: Alignment.bottomRight,
-                           child: Icon(
-                              IconData(58828, fontFamily: 'MaterialIcons',),size:26,color:Color(0xFFdddddd)
-                           ),
-                         )
-                       )
-                    ],
-                  ),
-                ),
+                    GestureDetector(
+                      child: Container(
+                        padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
+                        decoration: BoxDecoration(
+                          border: new Border(
+                            bottom: BorderSide(
+                              color: Color(0xFFf2f2f2)
+                            )
+                          )
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Icon(IconData(57345, fontFamily: 'MaterialIcons'),size:28,color:Color(0xFF03a9f4)),
+                            Container(
+                              margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                              child: Text("版本号",style: TextStyle(fontSize: 14),),
+                            ),
+                            Expanded(
+                              child:  Container(
+                                alignment: Alignment.bottomRight,
+                                child: Icon(
+                                    IconData(58828, fontFamily: 'MaterialIcons',),size:26,color:Color(0xFFdddddd)
+                                ),
+                              )
+                            )
+                          ],
+                        ),
+                      ),
+                      onTap:() {
+                        print(showHead);
+                      }
+                    ),
                 Container(
                   padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
                   decoration: BoxDecoration(
@@ -184,7 +199,7 @@ class HomeAppState extends State<HomeApp> {
                   ],
                 )
               ),
-              body: new HomeWidget(),
+              body: new HomeWidget(callBack: (value) => setHead(value)),
               resizeToAvoidBottomPadding: false,
             ),
             routes: <String, WidgetBuilder>{
@@ -197,12 +212,15 @@ class HomeAppState extends State<HomeApp> {
     }
 }
 class HomeWidget extends StatefulWidget{
+  HomeWidget({
+    Key key,this.callBack
+  }): super(key: key);
+  final callBack;
   @override
   _HomeWidgetState createState() => new _HomeWidgetState();
 }
 class _HomeWidgetState extends State<HomeWidget>{
   final List<Widget> list = List();
-  var showHead = true;
   int _currentIndex = 0;
   @override
   void initState() {
@@ -210,7 +228,6 @@ class _HomeWidgetState extends State<HomeWidget>{
       ..add(HomeKpi())
       ..add( HomeMy());
       super.initState();
-      
   }
   Widget build(BuildContext content){
     return Scaffold(
@@ -221,9 +238,9 @@ class _HomeWidgetState extends State<HomeWidget>{
           setState(() {
             _currentIndex = index;
             if (_currentIndex == 0) {
-              showHead = true;
+              widget.callBack(true);
             } else {
-              showHead = false;
+               widget.callBack(false);
             }
           });
         },
