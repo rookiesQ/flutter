@@ -36,13 +36,15 @@ class _LoginView extends State<LoginView> {
     } else {
         if (_phonecontroller.text.length == 0){
           Fluttertoast.showToast(
-              msg: "请填写用户名"
+              msg: "请填写用户名",
+              gravity: ToastGravity.CENTER
           );
           return;
         }
         if (_pwdcontroller.text.length == 0){
           Fluttertoast.showToast(
-              msg: "请填写密码"
+              msg: "请填写密码",
+              gravity: ToastGravity.CENTER
           );
           return;
         }
@@ -102,28 +104,34 @@ class _LoginView extends State<LoginView> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30)
                     ),
-                    child:TextField(
-                      maxLines: 1,
-                      controller: _phonecontroller,
-                      onChanged: changePhone(),
-                      scrollPadding: EdgeInsets.fromLTRB(0, 0, 0, 170),
-                      style:TextStyle(
-                        color: Colors.white
-                      ),
-                      decoration: InputDecoration(
-                        hintText: '请输入用户名',
-                        hintStyle: new TextStyle(
-                          color: Color.fromRGBO(183 ,182, 180, 1),
+                    child:Column(
+                      children: <Widget>[
+                        TextField(
+                          maxLines: 1,
+                          controller: _phonecontroller,
+                          onChanged: changePhone(),
+                          scrollPadding: EdgeInsets.fromLTRB(0, 0, 0, 170),
+                          style:TextStyle(
+                            color: Colors.white
+                          ),
+                          decoration: InputDecoration(
+                            hintText: '请输入用户名',
+                            border: InputBorder.none,
+                            hintStyle: new TextStyle(
+                              color: Color.fromRGBO(183 ,182, 180, 1),
+                            ),
+                            suffixIcon: deletePhone ? new IconButton(
+                                icon: new Icon(Icons.clear,
+                                color: Color.fromRGBO(183 ,182, 180, 0.5)),
+                                iconSize: 20,
+                                onPressed: () {
+                                  _phonecontroller.text = "";
+                                },
+                            ): Text("")
+                          ),
                         ),
-                        suffixIcon: deletePhone ? new IconButton(
-                            icon: new Icon(Icons.clear,
-                            color: Color.fromRGBO(183 ,182, 180, 0.5)),
-                            iconSize: 20,
-                            onPressed: () {
-                              _phonecontroller.text = "";
-                            },
-                        ): Text("")
-                      ),
+                        Divider(color:Color.fromRGBO(183 ,182, 180, 0.8))
+                      ],
                     )
                   )
                 ),
@@ -136,29 +144,35 @@ class _LoginView extends State<LoginView> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    child:TextField(
-                      maxLines: 1,
-                      obscureText: true,
-                      onChanged:  changePwd(),
-                      scrollPadding: EdgeInsets.fromLTRB(0, 0, 0, 120),
-                      controller: _pwdcontroller,
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                        hintText: '请输入密码',
-                        hintStyle: new TextStyle(
-                          color: Color.fromRGBO(183 ,182, 180, 1)
-                        ),
-                        suffixIcon: deletePwd ? new IconButton(
-                            iconSize: 20,
-                            icon: new Icon(
-                              Icons.clear,
-                              color: Color.fromRGBO(183 ,182, 180, 0.5),
+                    child:Column(
+                      children: <Widget>[
+                        TextField(
+                          maxLines: 1,
+                          obscureText: true,
+                          onChanged:  changePwd(),
+                          scrollPadding: EdgeInsets.fromLTRB(0, 0, 0, 120),
+                          controller: _pwdcontroller,
+                          keyboardType: TextInputType.text,
+                          decoration: InputDecoration(
+                            hintText: '请输入密码',
+                            border: InputBorder.none,
+                            hintStyle: new TextStyle(
+                              color: Color.fromRGBO(183 ,182, 180, 1)
                             ),
-                            onPressed: () {
-                              _pwdcontroller.text = "";
-                            },
-                        ): Text("")
-                      ),
+                            suffixIcon: deletePwd ? new IconButton(
+                                iconSize: 20,
+                                icon: new Icon(
+                                  Icons.clear,
+                                  color: Color.fromRGBO(183 ,182, 180, 0.5),
+                                ),
+                                onPressed: () {
+                                  _pwdcontroller.text = "";
+                                },
+                            ): Text("")
+                          ),
+                        ),
+                        Divider(color:Color.fromRGBO(183 ,182, 180, 0.8))
+                      ],
                     )
                   )
                 ),

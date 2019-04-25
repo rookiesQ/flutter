@@ -8,7 +8,9 @@ import 'package:hk_app/report/list/list.dart';
 import 'package:hk_app/report/nav/nav.dart';
 // 引入列表组件
 import 'package:hk_app/report/animate/animate.dart';
-
+ // 获取设备信息
+import 'package:package_info/package_info.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 class HomeApp extends StatefulWidget{
     @override
     HomeAppState createState() => HomeAppState();
@@ -84,22 +86,33 @@ class HomeAppState extends State<HomeApp> {
                             )
                           )
                         ),
-                        child: Row(
-                          children: <Widget>[
-                            Icon(IconData(57345, fontFamily: 'MaterialIcons'),size:28,color:Color(0xFF03a9f4)),
-                            Container(
-                              margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
-                              child: Text("版本号",style: TextStyle(fontSize: 14),),
-                            ),
-                            Expanded(
-                              child:  Container(
-                                alignment: Alignment.bottomRight,
-                                child: Icon(
-                                    IconData(58828, fontFamily: 'MaterialIcons',),size:26,color:Color(0xFFdddddd)
-                                ),
+                        child: GestureDetector(
+                          child: Row(
+                            children: <Widget>[
+                              Icon(IconData(57345, fontFamily: 'MaterialIcons'),size:28,color:Color(0xFF03a9f4)),
+                              Container(
+                                margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                                child: Text("版本号",style: TextStyle(fontSize: 14),),
+                              ),
+                              Expanded(
+                                child:  Container(
+                                  alignment: Alignment.bottomRight,
+                                  child: Icon(
+                                      IconData(58828, fontFamily: 'MaterialIcons',),size:26,color:Color(0xFFdddddd)
+                                  ),
+                                )
                               )
-                            )
-                          ],
+                            ],
+                          ),
+                           onTap: () {
+                             PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
+                              Fluttertoast.showToast(
+                                msg: packageInfo.version,
+                                 gravity: ToastGravity.CENTER
+                              );
+                              print(packageInfo);
+                            });
+                           }
                         ),
                       ),
                       onTap:() {
