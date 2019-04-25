@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:hk_app/home/home.dart';
 import 'package:hk_app/login/login.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 void main() {
   runApp(MyApp());
 }
@@ -35,6 +36,12 @@ class MyAppState extends State<MyApp> {
         "home": (BuildContext context) => new HomeApp(),
         "splash": (BuildContext context) => new SplashScreen(),
         "login": (BuildContext context) => new LoginView(),
+        "/webview": (_) => WebviewScaffold(
+            url: 'https://wwww.baidu.com/',
+            appBar: AppBar(
+              title: Text("浏览网页"),
+            )
+        )
       },
       home: new LoadingPage(),
     );

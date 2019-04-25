@@ -13,8 +13,7 @@ class _LoadingState extends State<LoadingPage> {
     super.initState();
     SharedPreferences.getInstance()
      ..then((prefs) {
-       //bool hasSkip = prefs.getBool("hasSkip");
-       bool hasSkip = false;
+       bool hasSkip = prefs.getBool("hasSkip");
        if(hasSkip==null||!hasSkip){
           Navigator.of(context).pushReplacementNamed("splash");
         }else {

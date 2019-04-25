@@ -11,6 +11,7 @@ import 'package:hk_app/report/animate/animate.dart';
  // 获取设备信息
 import 'package:package_info/package_info.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
 class HomeApp extends StatefulWidget{
     @override
     HomeAppState createState() => HomeAppState();
@@ -128,24 +129,30 @@ class HomeAppState extends State<HomeApp> {
                       )
                     )
                   ),
-                  child: Row(
-                    children: <Widget>[
-                       Icon(IconData(59568, fontFamily: 'MaterialIcons'),size:28,color:Color.fromRGBO(245, 195, 68, 1)),
-                       Container(
-                         margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
-                         child: Text("员工保密制度",style: TextStyle(fontSize: 14),),
-                       ),
-                       Expanded(
-                         child:  Container(
-                           alignment: Alignment.bottomRight,
-                           child: Icon(
-                              IconData(58828, fontFamily: 'MaterialIcons',),size:26,color:Color(0xFFdddddd)
-                           ),
-                         )
-                       )
-                    ],
-                  ),
-                ),Container(
+                  child: GestureDetector(
+                    child: Row(
+                      children: <Widget>[
+                        Icon(IconData(59568, fontFamily: 'MaterialIcons'),size:28,color:Color.fromRGBO(245, 195, 68, 1)),
+                        Container(
+                          margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                          child: Text("浏览网页",style: TextStyle(fontSize: 14),),
+                        ),
+                        Expanded(
+                          child:  Container(
+                            alignment: Alignment.bottomRight,
+                            child: Icon(
+                                IconData(58828, fontFamily: 'MaterialIcons',),size:26,color:Color(0xFFdddddd)
+                            ),
+                          )
+                        )
+                      ],
+                    ),
+                    onTap: () {
+                      Navigator.of(context).pushNamed("/webview");
+                    }
+                  )
+                ),
+                /*Container(
                   padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
                   decoration: BoxDecoration(
                     border: new Border(
@@ -171,7 +178,7 @@ class HomeAppState extends State<HomeApp> {
                        )
                     ],
                   ),
-                ),GestureDetector(
+                ),*/GestureDetector(
                   child: Container(
                     padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
                     decoration: BoxDecoration(
@@ -219,6 +226,7 @@ class HomeAppState extends State<HomeApp> {
               "/list": (_) => ListViews(),
               "/nav": (_) => Nav(),
               "/animate": (_) => Animate(),
+              
             },
             
       );
