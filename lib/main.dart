@@ -37,7 +37,7 @@ class MyAppState extends State<MyApp> {
         "splash": (BuildContext context) => new SplashScreen(),
         "login": (BuildContext context) => new LoginView(),
         "/webview": (_) => WebviewScaffold(
-            url: 'https://wwww.baidu.com/',
+            url: 'https://www.baidu.com/',
             appBar: AppBar(
               title: Text("浏览网页"),
             )
