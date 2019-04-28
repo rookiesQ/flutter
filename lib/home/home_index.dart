@@ -35,7 +35,7 @@ class MenuState extends State<Menu> {
       crossAxisSpacing: 0,//横向间距
       children: <Widget>[
         Container(
-          child:GestureDetector(
+          child:InkWell(
             child:Column(
               children: <Widget>[
                 Icon(IconData(0xe6c5,fontFamily:'AppIconBase'),size:28,color:Color.fromRGBO(228, 122, 105, 1)),
@@ -49,7 +49,7 @@ class MenuState extends State<Menu> {
           )
           
         ),
-        GestureDetector(
+        InkWell(
           child:Column(
             children: <Widget>[
                     Icon(IconData(0xe6be,fontFamily:'AppIconBase'),size:26,color:Color.fromRGBO(65, 133, 246, 1)),
@@ -62,7 +62,7 @@ class MenuState extends State<Menu> {
             Navigator.of(context).pushNamed('/list');
           }
         ),
-         GestureDetector(
+         InkWell(
           child:Column(
             children: <Widget>[
               Icon(IconData(0xe6c3,fontFamily:'AppIconBase'),size:26,color:Color.fromRGBO(229, 93, 124, 1)),

@@ -77,7 +77,7 @@ class HomeAppState extends State<HomeApp> {
                         ),
                       ),
                     ),
-                    GestureDetector(
+                    InkWell(
                       child: Container(
                         padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
                         decoration: BoxDecoration(
@@ -87,7 +87,7 @@ class HomeAppState extends State<HomeApp> {
                             )
                           )
                         ),
-                        child: GestureDetector(
+                        child: InkWell(
                           child: Row(
                             children: <Widget>[
                               Icon(IconData(57345, fontFamily: 'MaterialIcons'),size:28,color:Color(0xFF03a9f4)),
@@ -105,31 +105,31 @@ class HomeAppState extends State<HomeApp> {
                               )
                             ],
                           ),
-                           onTap: () {
-                             PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
+                        ),
+                      ),
+                      onTap:() {
+                        PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
                               Fluttertoast.showToast(
                                 msg: packageInfo.version,
                                  gravity: ToastGravity.CENTER
                               );
                               print(packageInfo);
                             });
-                           }
-                        ),
-                      ),
-                      onTap:() {
-                        print(showHead);
                       }
                     ),
-                Container(
-                  padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
-                  decoration: BoxDecoration(
-                    border: new Border(
-                      bottom: BorderSide(
-                        color: Color(0xFFf2f2f2)
+                InkWell(
+                  onTap: () {
+                      Navigator.of(context).pushNamed("/webview");
+                  },
+                  child: Container(
+                    padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
+                    decoration: BoxDecoration(
+                      border: new Border(
+                        bottom: BorderSide(
+                          color: Color(0xFFf2f2f2)
+                        )
                       )
-                    )
-                  ),
-                  child: GestureDetector(
+                    ),
                     child: Row(
                       children: <Widget>[
                         Icon(IconData(59568, fontFamily: 'MaterialIcons'),size:28,color:Color.fromRGBO(245, 195, 68, 1)),
@@ -146,10 +146,8 @@ class HomeAppState extends State<HomeApp> {
                           )
                         )
                       ],
-                    ),
-                    onTap: () {
-                      Navigator.of(context).pushNamed("/webview");
-                    }
+                    )
+                    
                   )
                 ),
                 /*Container(
@@ -177,8 +175,8 @@ class HomeAppState extends State<HomeApp> {
                          )
                        )
                     ],
-                  ),
-                ),*/GestureDetector(
+                  ), 
+                ),*/InkWell(
                   child: Container(
                     padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
                     decoration: BoxDecoration(
