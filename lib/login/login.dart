@@ -6,24 +6,10 @@ class LoginView extends StatefulWidget {
   _LoginView createState() => _LoginView();
 }
 class _LoginView extends State<LoginView> {
-  final _phonecontroller=TextEditingController();
-  final _pwdcontroller = TextEditingController();
+  TextEditingController _phonecontroller=TextEditingController();
+  TextEditingController _pwdcontroller = TextEditingController();
   bool deletePhone= false;
   bool deletePwd= false;
-  changePwd () {
-    if (_pwdcontroller.text.length >0) {
-      deletePwd= true;
-    } else {
-      deletePwd= false;
-    }
-  }
-  changePhone () {
-    if (_phonecontroller.text.length >0) {
-      deletePhone= true;
-    } else {
-      deletePhone= false;
-    }
-  }
   loginPage () {
     if (_pwdcontroller.text.length>0 && _phonecontroller.text.length >0){
         print(_pwdcontroller.text);
@@ -53,6 +39,28 @@ class _LoginView extends State<LoginView> {
   }
   @override
   Widget build(BuildContext context) {
+    _phonecontroller.addListener((){
+      var state = false;
+      if (_phonecontroller.text.length >0) {
+          state= true;
+      } else {
+         state= false;
+      }
+      setState(() {
+         deletePhone = state;
+      });
+    });
+    _pwdcontroller.addListener((){
+      bool state = false;
+      if (_pwdcontroller.text.length >0) {
+        state= true;
+      } else {
+        state = false; 
+      }
+      setState(() {
+         deletePwd = state;
+      });
+    });
     return Scaffold(
       body:new Container(
           decoration:BoxDecoration(
@@ -83,7 +91,7 @@ class _LoginView extends State<LoginView> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Text('欢迎回来',
+                    Text('Welcome',
                       textAlign: TextAlign.left,
                       style:TextStyle(
                           fontSize: 40,
@@ -109,7 +117,6 @@ class _LoginView extends State<LoginView> {
                         TextField(
                           maxLines: 1,
                           controller: _phonecontroller,
-                          onChanged: changePhone(),
                           scrollPadding: EdgeInsets.fromLTRB(0, 0, 0, 170),
                           style:TextStyle(
                             color: Colors.white
@@ -149,7 +156,6 @@ class _LoginView extends State<LoginView> {
                         TextField(
                           maxLines: 1,
                           obscureText: true,
-                          onChanged:  changePwd(),
                           scrollPadding: EdgeInsets.fromLTRB(0, 0, 0, 120),
                           controller: _pwdcontroller,
                           keyboardType: TextInputType.text,
