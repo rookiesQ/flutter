@@ -50,23 +50,6 @@ class SplashScreenState extends State<SplashScreen> {
         //directionColorEnd: Alignment.bottomRight,
       ),
     );
-
-    /*slides.add(
-      new Slide(
-        title: "Welcome",
-        description:
-        "赠人玫瑰，手有余香；\n分享技术，传递快乐。",
-        styleDescription: TextStyle(
-            color: Colors.white,
-            fontSize: 20.0,
-            fontFamily: 'Raleway'),
-        marginDescription: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 70.0),
-        colorBegin: Color(0xffFFA500),
-        colorEnd: Color(0xff7FFFD4),
-        directionColorBegin: Alignment.topLeft,
-        directionColorEnd: Alignment.bottomRight,
-      ),
-    );*/
   }
 
   void onDonePress() {
@@ -98,25 +81,6 @@ class SplashScreenState extends State<SplashScreen> {
         styleNameDoneBtn: TextStyle(
           color:Color(0xff000000)
         )
-        /*renderDoneBtn: Container(
-          padding:EdgeInsets.fromLTRB(2, 10, 2, 10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(6),
-            color: Color.fromRGBO(83, 84, 89, 1)
-          ),
-          alignment: Alignment.center,
-          child:Text(
-            '立即进入',
-            textAlign: TextAlign.center,
-            style:TextStyle(
-              fontSize: 15.0,
-              fontWeight: FontWeight.normal,
-              decoration: TextDecoration.none,
-              color: Color.fromRGBO(186, 187, 191, 1)
-            )
-          )
-                    
-        )*/
 
     );
   }
