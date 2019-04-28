@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 class HomeKpi extends StatelessWidget{
   @override
   Widget build (BuildContext context) {
@@ -40,7 +41,7 @@ class MenuState extends State<Menu> {
               children: <Widget>[
                 Icon(IconData(0xe6c5,fontFamily:'AppIconBase'),size:28,color:Color.fromRGBO(228, 122, 105, 1)),
                 SizedBox(height:20),
-                Text("特效动画",style:TextStyle(fontSize: 13,color:Colors.black))
+                Text("flutter中文网",style:TextStyle(fontSize: 13,color:Colors.black))
               ],
             ),
             onTap: (){
@@ -67,14 +68,14 @@ class MenuState extends State<Menu> {
             children: <Widget>[
               Icon(IconData(0xe6c3,fontFamily:'AppIconBase'),size:26,color:Color.fromRGBO(229, 93, 124, 1)),
               SizedBox(height:20),
-              Text("可滑动的导航栏",style:TextStyle(fontSize: 13,color:Colors.black))
+              Text("typescript中文网",style:TextStyle(fontSize: 13,color:Colors.black))
             ],
           ),
           onTap: () {
             Navigator.of(context).pushNamed('/nav');
-          }
+          },
         ),
-        
+       
         
         
         

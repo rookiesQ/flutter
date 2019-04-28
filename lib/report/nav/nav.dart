@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 class Nav extends StatelessWidget{
   @override
   Widget build (BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("导航栏",style: TextStyle(color: Colors.white)),
-        brightness: Brightness.light,
-        centerTitle: true,
-        elevation: 0.5,
-        backgroundColor: Colors.blue,
-      ),
-      body: Center(child:Text('导航特效'))
-      
-    );
+    return WebviewScaffold(
+              url: 'https://www.tslang.cn/',
+              appBar: AppBar(
+                title: Text('typescript中文网'),
+              )
+     );
   }
 }
 
