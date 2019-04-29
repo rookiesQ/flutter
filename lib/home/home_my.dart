@@ -10,15 +10,15 @@ class HomeMy extends StatelessWidget{
       Center(child: Icon(Icons.forum,size: 64.0,color: Colors.blue),)
     ];
     final _kTabs = <Tab>[
-      Tab(icon: Icon(Icons.cloud),text: 'tab1',),
-      Tab(icon: Icon(Icons.alarm),text: 'tab2',),
-      Tab(icon: Icon(Icons.forum),text: 'tab3',)
+      Tab(icon: Icon(Icons.cloud),text: '云',),
+      Tab(icon: Icon(Icons.alarm),text: '闹钟',),
+      Tab(icon: Icon(Icons.forum),text: '书籍',)
     ];
     return DefaultTabController(
         length: _kTabs.length,
         child: Scaffold(
           appBar: AppBar(
-            title: Text('我的tab'),
+            title: Text('菜单页面'),
             backgroundColor: Colors.cyan,
             bottom:TabBar(
               tabs: _kTabs,

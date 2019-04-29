@@ -66,7 +66,7 @@ class MenuState extends State<Menu> {
          InkWell(
           child:Column(
             children: <Widget>[
-              Icon(IconData(0xe6c3,fontFamily:'AppIconBase'),size:26,color:Color.fromRGBO(229, 93, 124, 1)),
+              Icon(Icons.bookmark,size:26,color:Color.fromRGBO(229, 93, 124, 1)),
               SizedBox(height:20),
               Text("typescript中文网",style:TextStyle(fontSize: 13,color:Colors.black))
             ],
@@ -78,9 +78,9 @@ class MenuState extends State<Menu> {
         InkWell(
             child:Column(
               children: <Widget>[
-                Icon(IconData(0xe6c3,fontFamily:'AppIconBase'),size:26,color:Color.fromRGBO(229, 93, 124, 1)),
+                Icon(Icons.book,size:26,color:Colors.blue),
                 SizedBox(height:20),
-                Text("测试",style:TextStyle(fontSize: 13,color:Colors.black))
+                Text("掘金专网",style:TextStyle(fontSize: 13,color:Colors.black))
               ],
             ),
             onTap: () {

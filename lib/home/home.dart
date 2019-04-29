@@ -9,7 +9,7 @@ import 'package:hk_app/report/nav/nav.dart';
 // 引入列表组件
 import 'package:hk_app/report/animate/animate.dart';
 // 引入列表组件
-import 'package:hk_app/report/test/test.dart';
+import 'package:hk_app/report/book/book.dart';
  // 获取设备信息
 import 'package:package_info/package_info.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -226,7 +226,7 @@ class HomeAppState extends State<HomeApp> {
               "/list": (_) => ListViews(),
               "/nav": (_) => Nav(),
               "/animate": (_) => Animate(),
-              '/web':(_) => WebViewPage(title: 'test',url: 'https://www.baidu.com')
+              '/web':(_) => WebViewPage(title: '掘金',url: 'https://juejin.im/')
             },
             
       );
