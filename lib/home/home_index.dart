@@ -75,7 +75,18 @@ class MenuState extends State<Menu> {
             Navigator.of(context).pushNamed('/nav');
           },
         ),
-       
+        InkWell(
+            child:Column(
+              children: <Widget>[
+                Icon(IconData(0xe6c3,fontFamily:'AppIconBase'),size:26,color:Color.fromRGBO(229, 93, 124, 1)),
+                SizedBox(height:20),
+                Text("测试",style:TextStyle(fontSize: 13,color:Colors.black))
+              ],
+            ),
+            onTap: () {
+              Navigator.of(context).pushNamed('/web');
+            },
+          ),
         
         
         

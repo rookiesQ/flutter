@@ -8,6 +8,8 @@ import 'package:hk_app/report/list/list.dart';
 import 'package:hk_app/report/nav/nav.dart';
 // 引入列表组件
 import 'package:hk_app/report/animate/animate.dart';
+// 引入列表组件
+import 'package:hk_app/report/test/test.dart';
  // 获取设备信息
 import 'package:package_info/package_info.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -224,7 +226,7 @@ class HomeAppState extends State<HomeApp> {
               "/list": (_) => ListViews(),
               "/nav": (_) => Nav(),
               "/animate": (_) => Animate(),
-              
+              '/web':(_) => WebViewPage(title: 'test',url: 'https://www.baidu.com')
             },
             
       );
@@ -270,7 +272,7 @@ class _HomeWidgetState extends State<HomeWidget>{
             title:Text('首页',style: TextStyle(fontSize: 14.0))
           ),BottomNavigationBarItem(
             icon: Icon(IconData(0xe61e,fontFamily:'AppIconFonts'),size:20),
-            title:Text('我的',style: TextStyle(fontSize: 14.0))
+            title:Text('菜单',style: TextStyle(fontSize: 14.0))
           )
         ]
       ),
