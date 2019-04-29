@@ -226,7 +226,9 @@ class HomeAppState extends State<HomeApp> {
               "/list": (_) => ListViews(),
               "/nav": (_) => Nav(),
               "/animate": (_) => Animate(),
-              '/web':(_) => WebViewPage(title: '掘金',url: 'https://juejin.im/')
+              '/web':(_) => WebViewPage(title: '掘金',url: 'https://juejin.im/'),
+              '/it':(_) => WebViewPage(title: 'it之家',url: 'https://www.ithome.com/'),
+             
             },
             
       );

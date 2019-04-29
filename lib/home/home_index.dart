@@ -87,8 +87,19 @@ class MenuState extends State<Menu> {
               Navigator.of(context).pushNamed('/web');
             },
           ),
-        
-        
+         InkWell(
+            child:Column(
+              children: <Widget>[
+                Icon(Icons.forum,size:26,color:Colors.yellow),
+                SizedBox(height:20),
+                Text("it之家",style:TextStyle(fontSize: 13,color:Colors.black))
+              ],
+            ),
+            onTap: () {
+              Navigator.of(context).pushNamed('/it');
+            },
+          ),
+          
         
       ],
     );
