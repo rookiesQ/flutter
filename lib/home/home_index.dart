@@ -30,73 +30,103 @@ class MenuState extends State<Menu> {
   Widget build(BuildContext context) {
     return new GridView.count(
       crossAxisCount: 3,
-      padding: const EdgeInsets.fromLTRB(0,30,0,0),
       mainAxisSpacing: 0,//竖向间距
       crossAxisSpacing: 0,//横向间距
       children: <Widget>[
-        Container(
-          child:InkWell(
+        InkWell(
+          child:Container(
+            padding: const EdgeInsets.fromLTRB(0,40,0,0),
             child:Column(
               children: <Widget>[
-                Icon(IconData(0xe6c5,fontFamily:'AppIconBase'),size:28,color:Color.fromRGBO(228, 122, 105, 1)),
+                Icon(
+                  IconData(59530, fontFamily: 'MaterialIcons'),
+                  color:Colors.red,
+                  size: 30,
+                ),
                 SizedBox(height:20),
                 Text("flutter中文网",style:TextStyle(fontSize: 13,color:Colors.black))
               ],
             ),
-            onTap: (){
-               Navigator.of(context).pushNamed('/animate');
-            },
-          )
-          
+          ),
+          onTap: (){
+            Navigator.of(context).pushNamed('/animate');
+          },
         ),
         InkWell(
-          child:Column(
-            children: <Widget>[
-                    Icon(IconData(0xe6be,fontFamily:'AppIconBase'),size:26,color:Color.fromRGBO(65, 133, 246, 1)),
-                    SizedBox(height:20),
-                    Text("列表",style:TextStyle(fontSize: 13,color:Colors.black))
-            
-            ]
+          child: Container(
+            padding: const EdgeInsets.fromLTRB(0,40,0,0),
+            child:Column(
+              children: <Widget>[
+                      Icon(
+                        IconData(57373, fontFamily: 'MaterialIcons'),
+                        size:30,
+                        color:Color.fromRGBO(65, 133, 246, 1)),
+                      SizedBox(height:20),
+                      Text("列表",style:TextStyle(fontSize: 13,color:Colors.black))
+              
+              ]
+            ),
           ),
           onTap: () {
             Navigator.of(context).pushNamed('/list');
           }
         ),
-         InkWell(
-          child:Column(
-            children: <Widget>[
-              Icon(Icons.bookmark,size:26,color:Color.fromRGBO(229, 93, 124, 1)),
-              SizedBox(height:20),
-              Text("typescript中文网",style:TextStyle(fontSize: 13,color:Colors.black))
-            ],
+        InkWell(
+          child:Container(
+            padding: const EdgeInsets.fromLTRB(0,40,0,0),
+            child: Column(
+              children: <Widget>[
+                Icon(
+                  Icons.bookmark,
+                  size:30,
+                  color:Color.fromRGBO(229, 93, 124, 1)
+                ),
+                SizedBox(height:20),
+                Text("typescript中文网",style:TextStyle(fontSize: 13,color:Colors.black))
+              ],
+            ),
           ),
           onTap: () {
             Navigator.of(context).pushNamed('/nav');
           },
         ),
         InkWell(
+          child: Container(
+            padding: const EdgeInsets.fromLTRB(0,40,0,0),
             child:Column(
               children: <Widget>[
-                Icon(Icons.book,size:26,color:Colors.blue),
+                Icon(
+                  Icons.book,
+                  size:30,
+                  color:Colors.blue
+                ),
                 SizedBox(height:20),
                 Text("掘金专网",style:TextStyle(fontSize: 13,color:Colors.black))
               ],
             ),
-            onTap: () {
-              Navigator.of(context).pushNamed('/web');
-            },
+          ),
+          onTap: () {
+            Navigator.of(context).pushNamed('/web');
+          },
           ),
          InkWell(
+          child: Container(
+            padding: const EdgeInsets.fromLTRB(0,40,0,0),
             child:Column(
               children: <Widget>[
-                Icon(Icons.forum,size:26,color:Colors.yellow),
+                Icon(
+                  Icons.forum,
+                  size:30,
+                  color:Colors.pink
+                ),
                 SizedBox(height:20),
                 Text("it之家",style:TextStyle(fontSize: 13,color:Colors.black))
               ],
             ),
-            onTap: () {
-              Navigator.of(context).pushNamed('/it');
-            },
+          ),
+          onTap: () {
+            Navigator.of(context).pushNamed('/it');
+          },
           ),
           
         
