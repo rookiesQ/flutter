@@ -40,7 +40,7 @@ class MenuState extends State<Menu> {
               children: <Widget>[
                 Icon(
                   IconData(59530, fontFamily: 'MaterialIcons'),
-                  color:Colors.red,
+                  color:Colors.purple,
                   size: 30,
                 ),
                 SizedBox(height:20),
