@@ -271,10 +271,10 @@ class _HomeWidgetState extends State<HomeWidget>{
         items: [
           BottomNavigationBarItem(
             icon: Icon(IconData(0xe6ce,fontFamily:'AppIconBase'),size:20),
-            title:Text('首页',style: TextStyle(fontSize: 14.0))
+            title:Text('喜好',style: TextStyle(fontSize: 14.0))
           ),BottomNavigationBarItem(
             icon: Icon(IconData(0xe61e,fontFamily:'AppIconFonts'),size:20),
-            title:Text('菜单',style: TextStyle(fontSize: 14.0))
+            title:Text('页面',style: TextStyle(fontSize: 14.0))
           )
         ]
       ),
