@@ -121,7 +121,7 @@ class HomeAppState extends State<HomeApp> {
                     ),
                 InkWell(
                   onTap: () {
-                      Navigator.of(context).pushNamed("/webview");
+                      Navigator.of(context).pushNamed("intimate");
                   },
                   child: Container(
                     padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
@@ -137,7 +137,7 @@ class HomeAppState extends State<HomeApp> {
                         Icon(IconData(59568, fontFamily: 'MaterialIcons'),size:28,color:Color.fromRGBO(245, 195, 68, 1)),
                         Container(
                           margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
-                          child: Text("浏览网页",style: TextStyle(fontSize: 14),),
+                          child: Text("隐私协议",style: TextStyle(fontSize: 14),),
                         ),
                         Expanded(
                           child:  Container(

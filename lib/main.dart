@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hk_app/launch.dart';
 import './loading.dart';
-import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:hk_app/home/home.dart';
 import 'package:hk_app/login/login.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:hk_app/report/intimate/intimate.dart';
 void main() {
   runApp(MyApp());
 }
@@ -36,12 +35,7 @@ class MyAppState extends State<MyApp> {
         "home": (BuildContext context) => new HomeApp(),
         "splash": (BuildContext context) => new SplashScreen(),
         "login": (BuildContext context) => new LoginView(),
-        "/webview": (_) => WebviewScaffold(
-            url: 'https://www.baidu.com/',
-            appBar: AppBar(
-              title: Text("浏览网页"),
-            )
-        )
+        "intimate": (BuildContext context) => new Intimate()
       },
       home: new LoadingPage(),
     );

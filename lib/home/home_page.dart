@@ -6,7 +6,8 @@ class HomeMy extends StatelessWidget{
     //var screenSize;
         return Scaffold(
           appBar: AppBar(
-            title: Text('word')
+            title: Text('word'),
+            backgroundColor: Colors.cyan,
           ),
           body: TabOne()
     );

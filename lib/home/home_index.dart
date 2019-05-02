@@ -58,7 +58,7 @@ class MenuState extends State<Menu> {
             child:Column(
               children: <Widget>[
                       Icon(
-                        IconData(57373, fontFamily: 'MaterialIcons'),
+                        IconData(59484, fontFamily: 'MaterialIcons'),
                         size:30,
                         color:Color.fromRGBO(65, 133, 246, 1)),
                       SizedBox(height:20),
