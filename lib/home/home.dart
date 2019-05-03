@@ -9,7 +9,7 @@ import 'package:hk_app/report/nav/nav.dart';
 // 引入列表组件
 import 'package:hk_app/report/animate/animate.dart';
 // 引入列表组件
-import 'package:hk_app/report/book/book.dart';
+import 'package:hk_app/report/web/webView.dart';
  // 获取设备信息
 import 'package:package_info/package_info.dart';
 import 'package:fluttertoast/fluttertoast.dart';

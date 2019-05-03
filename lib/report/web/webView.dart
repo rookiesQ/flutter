@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 class WebViewPage extends StatefulWidget {
-  String title;
-  String url;
+  final title;
+  final url;
 
   WebViewPage({
     Key key,
@@ -20,11 +20,17 @@ class WebViewPage extends StatefulWidget {
 class WebViewPageState extends State<WebViewPage> {
   bool isLoad = true;
   final flutterWebviewPlugin = new FlutterWebviewPlugin();
-
+  var presentUrl = '';
   @override
   void initState() {
+    flutterWebviewPlugin.onUrlChanged.listen((state){
+      
+      setState(() {
+        presentUrl = state;
+      });
+      print(presentUrl);
+    });
     flutterWebviewPlugin.onStateChanged.listen((state) {
-      debugPrint("state:_" + state.type.toString());
       if (state.type == WebViewState.finishLoad) {
         setState(() {
           isLoad = false;
@@ -35,6 +41,7 @@ class WebViewPageState extends State<WebViewPage> {
         });
       }
     });
+    super.initState();
   }
 
 //  Future<bool> _requestPop() {
@@ -46,11 +53,27 @@ class WebViewPageState extends State<WebViewPage> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
+      onWillPop: (){
+        print(flutterWebviewPlugin.close());
+        //Navigator.of(context).pop(100);///弹出页面并传回int值100，用于上一个界面的回调
+        return new Future.value(false);
+      },
       child: WebviewScaffold(
         url: widget.url,
         appBar: new AppBar(
           elevation: 0.4,
           title: new Text(widget.title),
+          actions: <Widget>[
+            InkWell(
+              child: Container(
+                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                child:Text('返回')
+              ),
+              onTap: (){
+                flutterWebviewPlugin.goBack();
+              },
+            )
+          ],
           bottom: new PreferredSize(
             child: isLoad
                 ? new LinearProgressIndicator()
@@ -64,4 +87,6 @@ class WebViewPageState extends State<WebViewPage> {
       ),
     );
   }
+
+  of() {}
 }
