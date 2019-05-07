@@ -34,6 +34,7 @@ class HomeAppState extends State<HomeApp> {
     Widget build(BuildContext context) {
           return new MaterialApp(
             title: 'Welcom to Flutter',
+            debugShowCheckedModeBanner: false,  // 设置这一属性即可
             theme: new ThemeData(
               primaryColor: Colors.blue
             ),

@@ -32,9 +32,12 @@ dependencies:
   json_serializable: ^2.0.0
   package_info: ^0.3.2+1
   english_words: ^3.1.0
+  json_annotation: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  build_runner: any
 
 
 # For information on the generic Dart part of this file, see the
