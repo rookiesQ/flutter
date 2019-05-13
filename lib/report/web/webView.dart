@@ -54,8 +54,8 @@ class WebViewPageState extends State<WebViewPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: (){
-        print(flutterWebviewPlugin.close());
-        //Navigator.of(context).pop(100);///弹出页面并传回int值100，用于上一个界面的回调
+        //lutterWebviewPlugin.close();
+        Navigator.of(context).pop(100);///弹出页面并传回int值100，用于上一个界面的回调
         return new Future.value(false);
       },
       child: WebviewScaffold(
