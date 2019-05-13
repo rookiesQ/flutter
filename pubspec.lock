@@ -242,7 +242,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.1.3"
-<<<<<<< HEAD
   intl:
     dependency: transitive
     description:
@@ -250,8 +249,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.15.8"
-=======
->>>>>>> ba352e6a773e443bf7a6cea30ef6f444f90eed86
   intro_slider:
     dependency: "direct main"
     description:
