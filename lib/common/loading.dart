@@ -20,7 +20,7 @@ class LoadingPage {
   ///关闭loading
   void close() {
      Future.delayed(
-          Duration(milliseconds: 00 ),
+          Duration(milliseconds: 200 ),
           () {
               loadingStatu = false;
               Navigator.of(_context).pop();

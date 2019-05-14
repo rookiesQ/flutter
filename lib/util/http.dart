@@ -84,7 +84,7 @@ Future ajaxRequest(dataParam,url) async{
   var content;
   var response = await dio.post(baseUrl+url ,data:dataParam);
   content = response.data.toString();
-  return new Future((){
+  return new Future.delayed(Duration(milliseconds: 200 ),(){
     return content;
   });
 }
