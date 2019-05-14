@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:hk_app/data/authoriz.dart';
 import 'package:hk_app/home/home.dart';
+
+import 'dart:io' show Platform, stdout;
+
 import '../common/loading.dart';
 // 添加网络请求
 import 'package:hk_app/util/http.dart';
@@ -14,23 +16,32 @@ class _LoginView extends State<LoginView> {
   TextEditingController _pwdcontroller = TextEditingController();
   bool deletePhone= false;
   bool deletePwd= false;
-  
+  String systemType = '';
   // 错误信息
+  @ override
+  void initState() {
+    
+    if (Platform.isIOS){
+      systemType = 'ios';
+    }
+    if (Platform.isAndroid){
+      systemType = 'android';
+    }
+    print(systemType);
+  }
   bool errorStatu = false;
   String errorData = '';
+  
   loginPage () {
-    LoadingPage loadingPage = LoadingPage();
+    LoadingPage loadingPage = LoadingPage(context);
     if (_pwdcontroller.text.length>0 && _phonecontroller.text.length >0){
-        
+        loadingPage.show();
         var dataParam = {
           'AppID' : 'hkmobile',
 			    'UDID' : _phonecontroller.text
         };
-        
-        loadingPage.show();
-       
         authorizRequest(dataParam).then((res) {
-          var data= AuthrizData.fromJson(res);
+          var data= res;
           if (data == null) {
             Fluttertoast.showToast(
                 msg: data.toString(),
@@ -54,17 +65,32 @@ class _LoginView extends State<LoginView> {
             loadingPage.close();
             return;
           }
+          var usercode = data.data.userCode;
+          // 清除提醒
+          var param = {
+            'username': usercode,
+			      'password': _pwdcontroller.text,
+			      'systemType': systemType,
+			      'PhoneNumber': _phonecontroller.text
+          };
+          loadingPage.close();
+          ajaxRequest(param , '/user/Login').then((res1) {
+            print(res1);
+           
+            Navigator.of(context).pushAndRemoveUntil(
+              new MaterialPageRoute(
+                  builder: (context) => HomeApp()
+              ),
+              (route) => route == null
+            );
+          });
           setState(() {
             errorData = ''; 
             errorStatu = false;
           });
-          loadingPage.close();
+          
         });
-       /*Navigator.of(context).pushAndRemoveUntil(
-          new MaterialPageRoute(
-              builder: (context) => HomeApp()
-          ),
-        (route) => route == null);*/
+       
     } else {
         if (_phonecontroller.text.length == 0){
           Fluttertoast.showToast(

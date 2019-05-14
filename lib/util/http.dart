@@ -5,6 +5,7 @@
 import 'dart:io';
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:hk_app/data/authoriz.dart';
 
 void httpClient() async {
   var responseBody;
@@ -20,8 +21,8 @@ void httpClient() async {
 
 // 授权地址
 const url = 'http://edi01.ysappstore.com:8012/api/v1/Authoriz/Auth';
-var url_base = "";
-
+var baseUrl= "",apikey='';
+dynamic roleid;
 // Get请求
 Future getRequest()  async{
   var content;
@@ -60,17 +61,28 @@ Future authorizRequest(dataParam) async{
   }
   return new Future((){
      Map<String, dynamic> json = jsonDecode(content);
-    return json;
+     var data = AuthrizData.fromJson(json);
+     if (data.status.code == 0){
+       baseUrl = data.data.httpPort;
+       roleid = data.data.roleID;
+     }
+    return data;
   });
   
 }
 
 
 // Authoriz请求
-Future ajaxRequest(dataParam) async{
+Future ajaxRequest(dataParam,url) async{
+  print(dataParam);
   Dio dio = new Dio();
+  dio.options.headers = {
+        "X-HKMobile-ApiKey" : apikey,
+				"RoleId" : roleid,
+				"PrvCompany" : ''
+  };
   var content;
-  var response = await dio.post(url_base ,data:dataParam);
+  var response = await dio.post(baseUrl+url ,data:dataParam);
   content = response.data.toString();
   return new Future((){
     return content;

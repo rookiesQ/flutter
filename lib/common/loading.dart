@@ -9,22 +9,18 @@ class LoadingPage {
  
   ///打开loading
   void show() {
-    if(loadingStatu){
-      return;
-    }
-    showDialog(
-      context: _context,
-      builder: (context) {
-        return MyCustomLoadingDialog();
-      },
-    );
-    loadingStatu = true;
+     showDialog(
+        context: _context,
+        builder: (context) {
+          return MyCustomLoadingDialog();
+        },
+      );
   }
  
   ///关闭loading
   void close() {
      Future.delayed(
-          Duration(milliseconds: 200 ),
+          Duration(milliseconds: 00 ),
           () {
               loadingStatu = false;
               Navigator.of(_context).pop();
