@@ -19,7 +19,7 @@ class _LoginView extends State<LoginView> {
   bool errorStatu = false;
   String errorData = '';
   loginPage () {
-    LoadingPage loadingPage = LoadingPage(context);
+    LoadingPage loadingPage = LoadingPage();
     if (_pwdcontroller.text.length>0 && _phonecontroller.text.length >0){
         
         var dataParam = {
