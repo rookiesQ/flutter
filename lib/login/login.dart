@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hk_app/login/AuthorizData.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hk_app/home/home.dart';
-import "package:json_annotation/json_annotation.dart";
 // 添加网络请求
 import 'package:hk_app/util/http.dart';
 // 登录界面
@@ -26,11 +25,11 @@ class _LoginView extends State<LoginView> {
           print(res1.data);
          
         });
-       Navigator.of(context).pushAndRemoveUntil(
+       /*Navigator.of(context).pushAndRemoveUntil(
           new MaterialPageRoute(
               builder: (context) => HomeApp()
           ),
-        (route) => route == null);
+        (route) => route == null);*/
     } else {
         if (_phonecontroller.text.length == 0){
           Fluttertoast.showToast(
