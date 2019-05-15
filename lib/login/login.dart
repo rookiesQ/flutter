@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hk_app/home/home.dart';
 
-import 'dart:io' show Platform, stdout;
+import 'dart:io' show Platform;
 
 import '../common/loading.dart';
 // 添加网络请求
@@ -80,12 +80,19 @@ class _LoginView extends State<LoginView> {
                 errorData = ''; 
                 errorStatu = false;
               });
-              Navigator.of(context).pushAndRemoveUntil(
-                new MaterialPageRoute(
-                    builder: (context) => HomeApp()
-                ),
-                (route) => route == null
+              Fluttertoast.showToast(
+                msg: '登录成功',
+                  gravity: ToastGravity.CENTER
               );
+              new Future.delayed(const Duration(milliseconds: 1000)).then((res2){
+                Navigator.of(context).pushAndRemoveUntil(
+                  new MaterialPageRoute(
+                      builder: (context) => HomeApp()
+                  ),
+                  (route) => route == null
+                );
+              });
+              
             } else {
                setState(() {
                 errorData = res1.message; 
