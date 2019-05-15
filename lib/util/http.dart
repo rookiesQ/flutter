@@ -32,14 +32,14 @@ Future authorizRequest(dataParam) async{
     'body':dataParam
   };*/
    //Fiddler抓包设置代理
-  (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
+  /*(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
     client.findProxy = (url){
-      return "PROXY 172.31.61.75:8888";
+      return "PROXY 192.168.0.100:8888";
     };
     //抓Https包设置
     client.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
-  };
+  };*/
   var content;
   try {
     Response response = await dio.post(url,data:dataParam);
@@ -65,14 +65,14 @@ Future authorizRequest(dataParam) async{
 Future ajaxRequest(dataParam,url) async{
   Dio dio = new Dio();
   //Fiddler抓包设置代理
-  (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
+  /*(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
     client.findProxy = (url){
-      return "PROXY 172.31.61.75:8888";
+      return "PROXY 192.168.0.100:8888";
     };
     //抓Https包设置
     client.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
-  };
+  };*/
    SharedPreferences.getInstance()
      ..then((prefs) {
         Map<String, dynamic> userinfo = json.decode(prefs.getString("userInfo"));
