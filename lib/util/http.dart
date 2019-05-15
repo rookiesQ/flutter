@@ -40,6 +40,9 @@ void postRequest(url_post,dataParam) async{
   var content;
   var response = await dio.post(url_post,data:dataParam);
   content = response.data.toString();
+  return new Future((){
+    return content;
+  });
 }
 
 
@@ -49,7 +52,15 @@ Future authorizRequest(dataParam) async{
   /*dataParam = {
     'body':dataParam
   };*/
-  
+   //Fiddler抓包设置代理
+  (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
+    client.findProxy = (url){
+      return "PROXY 172.31.61.75:8888";
+    };
+    //抓Https包设置
+    client.badCertificateCallback =
+        (X509Certificate cert, String host, int port) => true;
+  };
   var content;
   try {
     Response response = await dio.post(url,data:dataParam);
@@ -76,6 +87,15 @@ Future authorizRequest(dataParam) async{
 Future ajaxRequest(dataParam,url) async{
   print(dataParam);
   Dio dio = new Dio();
+  //Fiddler抓包设置代理
+  (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
+    client.findProxy = (url){
+      return "PROXY 172.31.61.75:8888";
+    };
+    //抓Https包设置
+    client.badCertificateCallback =
+        (X509Certificate cert, String host, int port) => true;
+  };
   dio.options.headers = {
         "X-HKMobile-ApiKey" : apikey,
 				"RoleId" : roleid,
