@@ -75,19 +75,27 @@ class _LoginView extends State<LoginView> {
           };
           loadingPage.close();
           ajaxRequest(param , '/user/Login').then((res1) {
-            print(res1);
-           
-            Navigator.of(context).pushAndRemoveUntil(
-              new MaterialPageRoute(
-                  builder: (context) => HomeApp()
-              ),
-              (route) => route == null
-            );
+            if(res1.code == 1){
+              setState(() {
+                errorData = ''; 
+                errorStatu = false;
+              });
+              Navigator.of(context).pushAndRemoveUntil(
+                new MaterialPageRoute(
+                    builder: (context) => HomeApp()
+                ),
+                (route) => route == null
+              );
+            } else {
+               setState(() {
+                errorData = res1.message; 
+                errorStatu = true;
+              });
+            }
+            
+            
           });
-          setState(() {
-            errorData = ''; 
-            errorStatu = false;
-          });
+         
           
         });
        
