@@ -5,9 +5,27 @@
 import 'dart:io';
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
 import 'package:hk_app/data/authoriz.dart';
 import 'package:hk_app/data/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+// 设置请求头
+const httpHeaders = {
+  'Accept': '*/*',
+  'Accept-Encoding': 'gzip, deflate, br',
+  'Accept-Language': 'zh-CN,zh;q=0.9',
+  'Connection': 'keep-alive',
+  'Host': 'gold-tag-ms.juejin.im',
+  'Origin': 'https://juejin.im',
+  'Referer': 'https://juejin.im/timeline',
+  'User-Agent':
+      'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'X-Juejin-Client': '1531286592293',
+  'X-Juejin-Src': 'web',
+  'X-Juejin-Token':
+      'eyJhY2Nlc3NfdG9rZW4iOiJuU2ZVQ05tVlZ6VlNUUUNtIiwicmVmcmVzaF90b2tlbiI6ImVSUE52RTN1ODlwZVZ1TXYiLCJ0b2tlbl90eXBlIjoibWFjIiwiZXhwaXJlX2luIjoyNTkyMDAwfQ==',
+  'X-Juejin-Uid': '59120a711b69e6006865dd7b'
+};
 void httpClient() async {
   var responseBody;
   var httpClient = new HttpClient();
@@ -28,13 +46,10 @@ dynamic roleid;
 // Authoriz请求
 Future authorizRequest(dataParam) async{
   Dio dio = new Dio();
-  /*dataParam = {
-    'body':dataParam
-  };*/
-   //Fiddler抓包设置代理
+  //Fiddler抓包设置代理
   /*(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
     client.findProxy = (url){
-      return "PROXY 192.168.0.100:8888";
+      return "PROXY 172.31.61.75:8888";
     };
     //抓Https包设置
     client.badCertificateCallback =
@@ -67,7 +82,7 @@ Future ajaxRequest(dataParam,url) async{
   //Fiddler抓包设置代理
   /*(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
     client.findProxy = (url){
-      return "PROXY 192.168.0.100:8888";
+      return "PROXY 172.31.61.75:8888";
     };
     //抓Https包设置
     client.badCertificateCallback =
@@ -99,3 +114,30 @@ Future ajaxRequest(dataParam,url) async{
     return data;
   });
 }
+
+
+Future juejinRequest({int limit= 20,String category}) async{
+ final String url = 'https://timeline-merger-ms.juejin.im/v1/get_entry_by_rank?src=${httpHeaders['X-Juejin-Src']}&uid=${httpHeaders['X-Juejin-Uid']}&device_id=${httpHeaders['X-Juejin-Client']}&token=${httpHeaders['X-Juejin-Token']}&limit=$limit&category=$category';
+  final response = await http.get(Uri.encodeFull(url));
+  if (response.statusCode == 200){
+    return json.decode(response.body);
+  } else {
+    throw Exception('Failed to load get');
+  }
+}
+Future getCategories() async {
+   Dio dio = new Dio();
+    //Fiddler抓包设置代理
+    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
+      client.findProxy = (url){
+        return "PROXY 172.31.61.75:8888";
+      };
+      //抓Https包设置
+      client.badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+    };
+    dio.options.headers = httpHeaders;
+    final response = await dio.get('https://gold-tag-ms.juejin.im/v1/categories');
+     return response.toString();
+  }
+  //flutter packages pub run build_runner build
