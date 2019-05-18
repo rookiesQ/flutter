@@ -128,14 +128,14 @@ Future juejinRequest({int limit= 20,String category}) async{
 Future getCategories() async {
    Dio dio = new Dio();
     //Fiddler抓包设置代理
-    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
+    /*(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
       client.findProxy = (url){
-        return "PROXY 172.31.61.75:8888";
+        return "PROXY 172.20.10.5:8888";
       };
       //抓Https包设置
       client.badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
-    };
+    };*/
     dio.options.headers = httpHeaders;
     final response = await dio.get('https://gold-tag-ms.juejin.im/v1/categories');
      return response.toString();

@@ -49,28 +49,10 @@ class MenuState extends State<Menu> {
             ),
           ),
           onTap: (){
-            Navigator.of(context).pushNamed('/animate');
+            Navigator.of(context).pushNamed('/flutter');
           },
         ),
-        InkWell(
-          child: Container(
-            padding: const EdgeInsets.fromLTRB(0,40,0,0),
-            child:Column(
-              children: <Widget>[
-                      Icon(
-                        IconData(59484, fontFamily: 'MaterialIcons'),
-                        size:30,
-                        color:Color.fromRGBO(65, 133, 246, 1)),
-                      SizedBox(height:20),
-                      Text("列表",style:TextStyle(fontSize: 13,color:Colors.black))
-              
-              ]
-            ),
-          ),
-          onTap: () {
-            Navigator.of(context).pushNamed('/list');
-          }
-        ),
+       
         InkWell(
           child:Container(
             padding: const EdgeInsets.fromLTRB(0,40,0,0),
@@ -87,7 +69,7 @@ class MenuState extends State<Menu> {
             ),
           ),
           onTap: () {
-            Navigator.of(context).pushNamed('/nav');
+            Navigator.of(context).pushNamed('/typescript');
           },
         ),
         InkWell(
@@ -106,7 +88,7 @@ class MenuState extends State<Menu> {
             ),
           ),
           onTap: () {
-            Navigator.of(context).pushNamed('/web');
+            Navigator.of(context).pushNamed('/juejing');
           },
           ),
          InkWell(

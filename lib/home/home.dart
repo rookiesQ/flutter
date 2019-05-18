@@ -5,9 +5,7 @@ import '../home/home_index.dart';
 import '../home/home_page.dart';
 import 'package:hk_app/login/login.dart';
 // 引入列表组件
-import 'package:hk_app/report/list/list.dart';
-// 引入nav组件
-import 'package:hk_app/report/nav/nav.dart';
+import 'package:hk_app/report/juejing/index.dart';
 // 引入列表组件
 import 'package:hk_app/report/animate/animate.dart';
 // 引入列表组件
@@ -275,12 +273,11 @@ class HomeAppState extends State<HomeApp> {
               resizeToAvoidBottomPadding: false,
             ),
             routes: <String, WidgetBuilder>{
-              "/list": (_) => ListViews(),
-              "/nav": (_) => Nav(),
+              "/juejing": (_) => ListViews(),
               "/animate": (_) => Animate(),
-              '/web':(_) => WebViewPage(title: '掘金',url: 'https://juejin.im/'),
               '/it':(_) => WebViewPage(title: 'it之家',url: 'https://www.ithome.com/'),
-             
+              '/typescript':(_) => WebViewPage(title: 'TypeScript学习',url: 'https://www.tslang.cn/'),
+              '/flutter':(_) => WebViewPage(title: 'Flutter中文网',url: 'https://flutterchina.club/'),
             },
             
       );
