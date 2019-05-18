@@ -7,8 +7,6 @@ import 'package:hk_app/login/login.dart';
 // 引入列表组件
 import 'package:hk_app/report/juejing/index.dart';
 // 引入列表组件
-import 'package:hk_app/report/animate/animate.dart';
-// 引入列表组件
 import 'package:hk_app/report/web/webView.dart';
  // 获取设备信息
 import 'package:package_info/package_info.dart';
@@ -274,7 +272,6 @@ class HomeAppState extends State<HomeApp> {
             ),
             routes: <String, WidgetBuilder>{
               "/juejing": (_) => ListViews(),
-              "/animate": (_) => Animate(),
               '/it':(_) => WebViewPage(title: 'it之家',url: 'https://www.ithome.com/'),
               '/typescript':(_) => WebViewPage(title: 'TypeScript学习',url: 'https://www.tslang.cn/'),
               '/flutter':(_) => WebViewPage(title: 'Flutter中文网',url: 'https://flutterchina.club/'),
