@@ -116,21 +116,30 @@ Future ajaxRequest(dataParam,url) async{
 }
 
 
-Future juejinRequest({int limit= 20,String category}) async{
- final String url = 'https://timeline-merger-ms.juejin.im/v1/get_entry_by_rank?src=${httpHeaders['X-Juejin-Src']}&uid=${httpHeaders['X-Juejin-Uid']}&device_id=${httpHeaders['X-Juejin-Client']}&token=${httpHeaders['X-Juejin-Token']}&limit=$limit&category=$category';
-  final response = await http.get(Uri.encodeFull(url));
-  if (response.statusCode == 200){
-    return json.decode(response.body);
-  } else {
-    throw Exception('Failed to load get');
-  }
+Future getArticle({int limit= 20,String category}) async{
+   Dio dio = new Dio();
+    //Fiddler抓包设置代理
+    /*(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
+      client.findProxy = (url){
+        return "PROXY 172.20.10.3:8888";
+      };
+      //抓Https包设置
+      client.badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+    };*/
+    final String url =
+        'https://timeline-merger-ms.juejin.im/v1/get_entry_by_rank?src=web&before=15.838909742541&limit=20&category=${category}';
+    final response = await dio.get(url);
+    return response.toString();
+  
+ 
 }
 Future getCategories() async {
    Dio dio = new Dio();
     //Fiddler抓包设置代理
     /*(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
       client.findProxy = (url){
-        return "PROXY 172.20.10.5:8888";
+        return "PROXY 172.20.10.3:8888";
       };
       //抓Https包设置
       client.badCertificateCallback =
