@@ -1,4 +1,6 @@
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/rendering.dart';
 import 'package:hk_app/data/category.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
@@ -74,16 +76,95 @@ class _ListContentState extends State<ListContent> {
   @override
   Widget build(BuildContext context) {
     var listTiles= <Widget>[];
+    //print(widget.list['entrylist'][0].toString());
     widget.list['entrylist'].forEach((li){
-      listTiles.add(
-          ListTile(
-            title: Text(li['title']),
-            isThreeLine: true,
+      
+          print(li['tags'].length);
+          var tagsTitle = '';
+          
+           
+            if( li['tags'].length > 1){
+              tagsTitle =li['tags'][0]['title'] +'/' +li['tags'][1]['title'];
+            } else {
+              tagsTitle += li['tags'][0]['title'];
+            }
             
-            dense: true ,
-            subtitle:Text(li['content']),
+            
+          
+        listTiles.add(
+          Column(
+            children: <Widget>[
+              li['user']['avatarLarge']!= null ? Flex(
+                direction: Axis.horizontal,
+                children: <Widget>[
+                  Expanded(
+                    flex: 2,
+                    child: Row(children: <Widget>[
+                       Container(
+                          margin: EdgeInsets.fromLTRB(20, 20, 5, 0),
+                          child: ClipOval(
+                            child:Image.network(
+                              li['user']['avatarLarge'],
+                              width: 20,
+                              height:20,
+                              fit:BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.fromLTRB(0, 20, 5, 0),
+                          child: Text(li['user']['username'])
+                        )
+                    ],),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      child:Flex(
+                        direction: Axis.horizontal,
+                        textDirection: TextDirection.rtl,
+                        children: [
+                          
+                          Text(
+                              tagsTitle, //==null ? li['tags'][0]['title']:li['tags'][1]['title']+'/'+li['tags'][0]['title'],
+                              overflow:TextOverflow.ellipsis,
+                              maxLines:1,
+                              
+                              style: TextStyle(),
+                            ),
+                           
+                        ]
+                         
+                          
+                        
+                      ),
+                      alignment: Alignment.topRight,
+                      padding: EdgeInsets.fromLTRB(0, 20, 20, 0)
+                    ),
+                  )
+                 
+              ],) : Text(''),
+              Container(
+                padding: EdgeInsets.fromLTRB(20, 5, 20, 0),
+                alignment: Alignment.topLeft,
+                child:Text(li['title'],style: TextStyle(fontSize: 18),)
+              ),
+               Container(
+                padding: EdgeInsets.fromLTRB(20, 5, 20, 20),
+                child:Text(
+                  li['content'],
+                  style: TextStyle(fontSize: 14,color: Colors.grey),
+                  textAlign: TextAlign.justify,
+                  overflow:TextOverflow.ellipsis,
+                  maxLines:3
+                )
+              )
+            ]
           )
-      );
+          
+        );
+      
+      
       listTiles.add(
           Divider()
       );

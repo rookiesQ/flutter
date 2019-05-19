@@ -130,6 +130,7 @@ Future getArticle({int limit= 20,String category}) async{
     final String url =
         'https://timeline-merger-ms.juejin.im/v1/get_entry_by_rank?src=web&before=15.838909742541&limit=20&category=${category}';
     final response = await dio.get(url);
+   
     return response.toString();
   
  
