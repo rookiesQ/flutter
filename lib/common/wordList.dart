@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
-class TabOne extends StatefulWidget {
+class WordList extends StatefulWidget {
   @override
  createState() => new HeaderPartState();
 }
-class HeaderPartState extends State<TabOne> {
+class HeaderPartState extends State<WordList> {
   final List<WordPair> _suggestions = <WordPair>[];
   final Set<WordPair> _saved = new Set<WordPair>();
   final TextStyle _biggerFont = const TextStyle(fontSize: 18.0);

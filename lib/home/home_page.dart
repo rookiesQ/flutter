@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hk_app/common/tabOne.dart';
+import 'package:hk_app/common/wordList.dart';
 class HomeMy extends StatelessWidget{
   @override
   Widget build (BuildContext context) {
@@ -9,7 +9,7 @@ class HomeMy extends StatelessWidget{
             title: Text('word'),
             backgroundColor: Colors.cyan,
           ),
-          body: TabOne()
+          body:WordList()
     );
   }
 }
