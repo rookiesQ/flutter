@@ -91,7 +91,7 @@ class MenuState extends State<Menu> {
             Navigator.of(context).pushNamed('/juejing');
           },
           ),
-         InkWell(
+         /*InkWell(
           child: Container(
             padding: const EdgeInsets.fromLTRB(0,40,0,0),
             child:Column(
@@ -109,7 +109,7 @@ class MenuState extends State<Menu> {
           onTap: () {
             Navigator.of(context).pushNamed('/it');
           },
-          ),
+          ),*/
           
         
       ],
