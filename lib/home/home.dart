@@ -272,7 +272,7 @@ class HomeAppState extends State<HomeApp> {
             ),
             routes: <String, WidgetBuilder>{
               "/juejing": (_) => ListViews(),
-              '/it':(_) => WebViewPage(title: 'it之家',url: 'https://www.ithome.com/'),
+              //'/it':(_) => WebViewPage(title: 'it之家',url: 'https://www.ithome.com/'),
               '/typescript':(_) => WebViewPage(title: 'TypeScript学习',url: 'https://www.tslang.cn/'),
               '/flutter':(_) => WebViewPage(title: 'Flutter中文网',url: 'https://flutterchina.club/'),
             },
