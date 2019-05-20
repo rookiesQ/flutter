@@ -10,7 +10,7 @@ import 'package:hk_app/data/authoriz.dart';
 import 'package:hk_app/data/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // 设置请求头
-const httpHeaders = {
+var httpHeaders = {
   'Accept': '*/*',
   'Accept-Encoding': 'gzip, deflate, br',
   'Accept-Language': 'zh-CN,zh;q=0.9',
@@ -76,7 +76,7 @@ Future authorizRequest(dataParam) async{
 }
 
 
-// Authoriz请求
+// 登录请求
 Future ajaxRequest(dataParam,url) async{
   Dio dio = new Dio();
   //Fiddler抓包设置代理
@@ -110,6 +110,7 @@ Future ajaxRequest(dataParam,url) async{
      if (data.code == 1){
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString("userInfo", content);
+        loginJuejin(); // 登录获取掘金信息
      }
     return data;
   });
@@ -121,14 +122,14 @@ Future getArticle({int limit= 20,String category}) async{
     //Fiddler抓包设置代理
     /*(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
       client.findProxy = (url){
-        return "PROXY 172.20.10.3:8888";
+        return "PROXY 172.31.61.75:8888";
       };
       //抓Https包设置
       client.badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
     };*/
     final String url =
-        'https://timeline-merger-ms.juejin.im/v1/get_entry_by_rank?src=web&before=15.838909742541&limit=20&category=${category}';
+        'https://timeline-merger-ms.juejin.im/v1/get_entry_by_rank?src=web&before=20&limit=20&category=${category}';
     final response = await dio.get(url);
    
     return response.toString();
@@ -138,16 +139,41 @@ Future getArticle({int limit= 20,String category}) async{
 Future getCategories() async {
    Dio dio = new Dio();
     //Fiddler抓包设置代理
-    /*(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
+    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
       client.findProxy = (url){
-        return "PROXY 172.20.10.3:8888";
+        return "PROXY 172.31.61.75:8888";
       };
       //抓Https包设置
       client.badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
-    };*/
+    };
     dio.options.headers = httpHeaders;
     final response = await dio.get('https://gold-tag-ms.juejin.im/v1/categories');
      return response.toString();
   }
   //flutter packages pub run build_runner build
+  // 登录掘金
+  Future loginJuejin() async {
+    Dio dio = new Dio();
+    //Fiddler抓包设置代理
+    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
+      client.findProxy = (url){
+        return "PROXY 172.31.61.75:8888";
+      };
+      //抓Https包设置
+      client.badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+    };
+     dio.options.headers = {
+       "X-Agent": "Juejin/Web"
+     };
+    final response = await dio.post('https://juejin.im/auth/type/phoneNumber',data:  {'phoneNumber': 13308195914,
+        			'password': 'lbq771777725',});
+    Map<String, dynamic> json = jsonDecode(response.toString());
+    httpHeaders['X-Juejin-Token'] = json['token'];
+    httpHeaders['X-Juejin-Uid'] = json['userId'];
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString("juejinInfo", json['user'].toString());
+   
+    //return response.toString();
+  }

@@ -19,8 +19,6 @@ class ListState extends State<ListViews>{
   void initState(){
      super.initState();
   }
-  void listView(){
-  }
   Widget build (BuildContext context) {
     return FutureBuilder(
       future:getCategories(),
