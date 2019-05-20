@@ -22,10 +22,8 @@ var httpHeaders = {
       'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
   'X-Juejin-Client': '1531286592293',
   'X-Juejin-Src': 'web',
-  'X-Juejin-Token':
-      'eyJhY2Nlc3NfdG9rZW4iOiJuU2ZVQ05tVlZ6VlNUUUNtIiwicmVmcmVzaF90b2tlbiI6ImVSUE52RTN1ODlwZVZ1TXYiLCJ0b2tlbl90eXBlIjoibWFjIiwiZXhwaXJlX2luIjoyNTkyMDAwfQ==',
+  'X-Juejin-Token': 'eyJhY2Nlc3NfdG9rZW4iOiJuU2ZVQ05tVlZ6VlNUUUNtIiwicmVmcmVzaF90b2tlbiI6ImVSUE52RTN1ODlwZVZ1TXYiLCJ0b2tlbl90eXBlIjoibWFjIiwiZXhwaXJlX2luIjoyNTkyMDAwfQ==',
   'X-Juejin-Uid': '59120a711b69e6006865dd7b',
-  'X-Juejin-clientId': ''
 };
 void httpClient() async {
   var responseBody;
@@ -81,14 +79,14 @@ Future authorizRequest(dataParam) async{
 Future ajaxRequest(dataParam,url) async{
   Dio dio = new Dio();
   //Fiddler抓包设置代理
-  /*(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
+  (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
     client.findProxy = (url){
       return "PROXY 172.31.61.75:8888";
     };
     //抓Https包设置
     client.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
-  };*/
+  };
    SharedPreferences.getInstance()
      ..then((prefs) {
         Map<String, dynamic> userinfo = json.decode(prefs.getString("userInfo"));
@@ -118,8 +116,9 @@ Future ajaxRequest(dataParam,url) async{
 }
 
 
-Future getArticle({int limit= 20,String category}) async{
+Future getArticle({int limit= 20,String category,dynamic before = ""}) async{
    Dio dio = new Dio();
+    
     //Fiddler抓包设置代理
     (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
       client.findProxy = (url){
@@ -129,11 +128,16 @@ Future getArticle({int limit= 20,String category}) async{
       client.badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
     };
+    dio.options.headers = {
+       "X-Agent": "Juejin/Web"
+    };
     final String url =
-        'https://timeline-merger-ms.juejin.im/v1/get_entry_by_rank?token=${httpHeaders['X-Juejin-Token']}&device_id=${httpHeaders['X-Juejin-clientId']}&uid=${httpHeaders['X-Juejin-Uid']}&src=web&before=20&limit=20&category=${category}';
+        'https://timeline-merger-ms.juejin.im/v1/get_entry_by_rank?&src=web&before=${before}&limit=20&category=${category}';
     final response = await dio.get(url);
-   
-    return response.toString();
+    return new Future((){
+      return response.toString();
+      }
+    );
   
  
 }
@@ -150,7 +154,9 @@ Future getCategories() async {
     };
     dio.options.headers = httpHeaders;
     final response = await dio.get('https://gold-tag-ms.juejin.im/v1/categories');
-     return response.toString();
+     return new Future((){
+       return response.toString();
+     });
   }
   //flutter packages pub run build_runner build
   // 登录掘金
@@ -174,7 +180,7 @@ Future getCategories() async {
     httpHeaders['X-Juejin-Token'] = json['token'];
     httpHeaders['X-Juejin-Uid'] = json['userId'];
     //device_id
-    httpHeaders['X-Juejin-clientId'] = json['clientId'].toString();
+    httpHeaders['X-Juejin-Client'] = json['clientId'].toString();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString("juejinInfo", json['user'].toString());
    

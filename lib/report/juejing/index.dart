@@ -23,7 +23,7 @@ class ListState extends State<ListViews>{
     return FutureBuilder(
       future:getCategories(),
       builder: (context ,AsyncSnapshot snapshot){
-        //print(snapshot.connectionState);
+        //print(snapshot.data.toString());
         switch (snapshot.connectionState) {
           case ConnectionState.none: 
           return StateNone();
