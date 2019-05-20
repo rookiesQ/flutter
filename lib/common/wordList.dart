@@ -32,7 +32,7 @@ class HeaderPartState extends State<TabOne> {
    
   }
   Widget _buildRow(WordPair pair) {
-    final bool alreadySaved = _saved.contains(pair); // 新增本行
+    final bool alreadySaved = _saved.contains(pair); // æ–°å¢žæœ¬è¡Œ
     print(pair);
     return ListTile(
       title: new Text(
