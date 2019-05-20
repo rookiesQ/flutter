@@ -33,6 +33,7 @@ void httpClient() async {
   if (response.statusCode == 200){
         responseBody = await response.transform(Utf8Decoder()).join();
         //print(responseBody);
+        
   }
   httpClient.close();
 }
@@ -79,14 +80,7 @@ Future authorizRequest(dataParam) async{
 Future ajaxRequest(dataParam,url) async{
   Dio dio = new Dio();
   //Fiddler抓包设置代理
-  (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
-    client.findProxy = (url){
-      return "PROXY 172.31.61.75:8888";
-    };
-    //抓Https包设置
-    client.badCertificateCallback =
-        (X509Certificate cert, String host, int port) => true;
-  };
+  
    SharedPreferences.getInstance()
      ..then((prefs) {
         Map<String, dynamic> userinfo = json.decode(prefs.getString("userInfo"));
@@ -120,14 +114,14 @@ Future getArticle({int limit= 20,String category,dynamic before = ""}) async{
    Dio dio = new Dio();
     
     //Fiddler抓包设置代理
-    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
+    /*(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
       client.findProxy = (url){
         return "PROXY 172.31.61.75:8888";
       };
       //抓Https包设置
       client.badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
-    };
+    };*/
     dio.options.headers = {
        "X-Agent": "Juejin/Web"
     };
@@ -144,14 +138,14 @@ Future getArticle({int limit= 20,String category,dynamic before = ""}) async{
 Future getCategories() async {
    Dio dio = new Dio();
     //Fiddler抓包设置代理
-    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
+    /*(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
       client.findProxy = (url){
         return "PROXY 172.31.61.75:8888";
       };
       //抓Https包设置
       client.badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
-    };
+    };*/
     dio.options.headers = httpHeaders;
     final response = await dio.get('https://gold-tag-ms.juejin.im/v1/categories');
      return new Future((){
@@ -163,14 +157,14 @@ Future getCategories() async {
   Future loginJuejin() async {
     Dio dio = new Dio();
     //Fiddler抓包设置代理
-    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
+    /*(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
       client.findProxy = (url){
         return "PROXY 172.31.61.75:8888";
       };
       //抓Https包设置
       client.badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
-    };
+    };*/
      dio.options.headers = {
        "X-Agent": "Juejin/Web"
      };

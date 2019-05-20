@@ -18,7 +18,7 @@ class _listContentState extends State<listContent> {
     return FutureBuilder(
       future: getArticle(category:widget.list.id),
       builder: (context ,AsyncSnapshot snapshot){
-         print(snapshot.toString());
+         //print(snapshot.toString());
          switch (snapshot.connectionState) {
           case ConnectionState.none: 
           return StateNone();
@@ -32,7 +32,7 @@ class _listContentState extends State<listContent> {
               if (json['m']=='ok'){
                
                 if (json['d']['total'] >0){
-                  return ListContent(list: json['d']);
+                  return ListContentMore(list: json['d']['entrylist'],id:widget.list.id);
                 } else {
                   return EmptyData();
                 }
@@ -83,32 +83,95 @@ class _EmptyDataState extends State<EmptyData> {
 }
 
 // 加载列表数据
-class ListContent extends StatefulWidget {
+
+
+class ListContentMore extends StatefulWidget {
   final list;
- 
+  final id;
+  ListContentMore({this.list,this.id}):super();
   @override
-  ListContent({this.list}):super();
-  _ListContentState createState() => _ListContentState();
+  _ListContentMoreState createState() => _ListContentMoreState();
 }
 
-class _ListContentState extends State<ListContent> {
+class _ListContentMoreState extends State<ListContentMore> {
+  bool isPerformingRequest = false;
+  ScrollController _scrollController = new ScrollController();
   @override
-  Widget build(BuildContext context) {
-    var listTiles= <Widget>[];
-    //print(widget.list['entrylist'][0].toString());
-    widget.list['entrylist'].forEach((li){
-        var tagsTitle = '';
-        for(var i=0;i<li['tags'].length;i++){
-          if(tagsTitle !=''){
-              tagsTitle +='/'+li['tags'][i]['title'];
-          } else{
-              tagsTitle +=li['tags'][i]['title'];
+  void initState(){
+    super.initState();
+    _scrollController.addListener((){
+      if(_scrollController.position.pixels >_scrollController.position.maxScrollExtent){
+        listViewMore(widget.list[widget.list.length-1]['userRankIndex']);
+      }
+    });
+  }
+
+  // 获取下一页的数据
+  void listViewMore(last){
+    if(!isPerformingRequest){
+      setState(() {
+        isPerformingRequest = true;
+      });
+      getArticle(category:widget.id,before: last).then((res){
+        Map<String, dynamic> json = jsonDecode(res);
+        if (json['m']=='ok'){
+          if (json['d']['total'] >0){
+            setState(() {
+              widget.list.addAll(json['d']['entrylist']);
+              isPerformingRequest = false;
+            });
+            
           }
         }
-        listTiles.add(
-          Column(
+      });
+    }
+  }
+
+  // 获取和处理下一页的数据
+  Widget build(BuildContext context) {
+    print(widget.list.length);
+    return ListView.builder(
+      itemCount: widget.list.length+1,
+      controller:  _scrollController,
+      itemBuilder: (BuildContext context ,int position){
+        if(position == widget.list.length)
+           return Center(
+             child:new Opacity(
+                opacity: isPerformingRequest ? 1.0 : 0.0,
+                child: new CircularProgressIndicator(),
+              ),
+           );
+        else 
+          return  ListItem(listitem:widget.list[position]);
+        
+      },
+    );
+  }
+}
+
+// 构建listitem单个
+class ListItem extends StatefulWidget {
+  final listitem;
+  ListItem({this.listitem}):super();
+  @override
+  _ListItemState createState() => _ListItemState();
+}
+
+class _ListItemState extends State<ListItem> {
+
+  @override
+  Widget build(BuildContext context) {
+    var tagsTitle = '';
+    for(var i=0;i<widget.listitem['tags'].length;i++){
+      if(tagsTitle !=''){
+          tagsTitle +='/'+widget.listitem['tags'][i]['title'];
+      } else{
+          tagsTitle +=widget.listitem['tags'][i]['title'];
+      }
+    }
+    return Column(
             children: <Widget>[
-              li['user']['avatarLarge']!= null ? Flex(
+              widget.listitem['user']['avatarLarge']!= null ? Flex(
                 direction: Axis.horizontal,
                 children: <Widget>[
                   Expanded(
@@ -117,9 +180,9 @@ class _ListContentState extends State<ListContent> {
                        Container(
                           margin: EdgeInsets.fromLTRB(20, 20, 5, 0),
                           child: ClipOval(
-                            child: li['user']['avatarLarge']!= null ? 
+                            child: widget.listitem['user']['avatarLarge']!= null ? 
                               Image.network(
-                                li['user']['avatarLarge'],
+                                widget.listitem['user']['avatarLarge'],
                                 width: 20,
                                 height:20,
                                 fit:BoxFit.fill,
@@ -138,7 +201,7 @@ class _ListContentState extends State<ListContent> {
                            Container(
                             margin: EdgeInsets.fromLTRB(0, 20, 5, 0),
                             child: Text(
-                              li['user']['username'],
+                              widget.listitem['user']['username'],
                               overflow:TextOverflow.ellipsis,
                               maxLines:1
                             )
@@ -166,31 +229,20 @@ class _ListContentState extends State<ListContent> {
               Container(
                 padding: EdgeInsets.fromLTRB(20, 5, 20, 0),
                 alignment: Alignment.topLeft,
-                child:Text(li['title'],style: TextStyle(fontSize: 18),)
+                child:Text(widget.listitem['title'],style: TextStyle(fontSize: 18),)
               ),
                Container(
                 padding: EdgeInsets.fromLTRB(20, 5, 20, 20),
                 child:Text(
-                  li['content'],
+                  widget.listitem['content'],
                   style: TextStyle(fontSize: 14,color: Colors.grey),
                   textAlign: TextAlign.justify,
                   overflow:TextOverflow.ellipsis,
                   maxLines:3
                 )
-              )
+              ),
+               Divider()
             ]
-          )
-          
-        );
-      
-      
-      listTiles.add(
-          Divider()
-      );
-    });
-    return ListView(
-      children: listTiles,
-     
-    );
+          );
   }
 }
