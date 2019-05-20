@@ -65,6 +65,7 @@ class _StateNoneState extends State<StateNone> {
 // 加载列表数据
 class ListContent extends StatefulWidget {
   final list;
+ 
   @override
   ListContent({this.list}):super();
   _ListContentState createState() => _ListContentState();
@@ -167,6 +168,9 @@ class _ListContentState extends State<ListContent> {
           Divider()
       );
     });
-    return ListView(children: listTiles);
+    return ListView(
+      children: listTiles,
+     
+    );
   }
 }
