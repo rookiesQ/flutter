@@ -24,7 +24,8 @@ var httpHeaders = {
   'X-Juejin-Src': 'web',
   'X-Juejin-Token':
       'eyJhY2Nlc3NfdG9rZW4iOiJuU2ZVQ05tVlZ6VlNUUUNtIiwicmVmcmVzaF90b2tlbiI6ImVSUE52RTN1ODlwZVZ1TXYiLCJ0b2tlbl90eXBlIjoibWFjIiwiZXhwaXJlX2luIjoyNTkyMDAwfQ==',
-  'X-Juejin-Uid': '59120a711b69e6006865dd7b'
+  'X-Juejin-Uid': '59120a711b69e6006865dd7b',
+  'X-Juejin-clientId': ''
 };
 void httpClient() async {
   var responseBody;
@@ -120,16 +121,16 @@ Future ajaxRequest(dataParam,url) async{
 Future getArticle({int limit= 20,String category}) async{
    Dio dio = new Dio();
     //Fiddler抓包设置代理
-    /*(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
+    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
       client.findProxy = (url){
         return "PROXY 172.31.61.75:8888";
       };
       //抓Https包设置
       client.badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
-    };*/
+    };
     final String url =
-        'https://timeline-merger-ms.juejin.im/v1/get_entry_by_rank?src=web&before=20&limit=20&category=${category}';
+        'https://timeline-merger-ms.juejin.im/v1/get_entry_by_rank?token=${httpHeaders['X-Juejin-Token']}&device_id=${httpHeaders['X-Juejin-clientId']}&uid=${httpHeaders['X-Juejin-Uid']}&src=web&before=20&limit=20&category=${category}';
     final response = await dio.get(url);
    
     return response.toString();
@@ -172,6 +173,8 @@ Future getCategories() async {
     Map<String, dynamic> json = jsonDecode(response.toString());
     httpHeaders['X-Juejin-Token'] = json['token'];
     httpHeaders['X-Juejin-Uid'] = json['userId'];
+    //device_id
+    httpHeaders['X-Juejin-clientId'] = json['clientId'].toString();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString("juejinInfo", json['user'].toString());
    
