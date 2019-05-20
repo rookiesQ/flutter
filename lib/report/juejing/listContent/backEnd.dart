@@ -96,12 +96,20 @@ class _ListContentState extends State<ListContent> {
                        Container(
                           margin: EdgeInsets.fromLTRB(20, 20, 5, 0),
                           child: ClipOval(
-                            child:Image.network(
-                              li['user']['avatarLarge'],
-                              width: 20,
-                              height:20,
-                              fit:BoxFit.fill,
-                            ),
+                            child: li['user']['avatarLarge']!= null ? 
+                              Image.network(
+                                li['user']['avatarLarge'],
+                                width: 20,
+                                height:20,
+                                fit:BoxFit.fill,
+                              )
+                              : 
+                              Image(
+                                image: AssetImage("assets/images/common/my_portrait.png"),
+                                width: 20,
+                                height: 20,
+                                fit:BoxFit.fill,
+                              ),
                           ),
                         ),
                         Expanded(
@@ -123,7 +131,7 @@ class _ListContentState extends State<ListContent> {
                     child: Container(
                       child:  
                           Text(
-                              tagsTitle, //==null ? li['tags'][0]['title']:li['tags'][1]['title']+'/'+li['tags'][0]['title'],
+                              tagsTitle,
                               overflow:TextOverflow.ellipsis,
                               maxLines:1,
                               style: TextStyle(),
