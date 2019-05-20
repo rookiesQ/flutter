@@ -1,7 +1,6 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
-import 'package:hk_app/data/category.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:hk_app/util/http.dart';
@@ -38,7 +37,6 @@ class _listContentState extends State<listContent> {
           
           case ConnectionState.active:
             return StateNone();
-            // TODO: Handle this case.
             break;
         }
         return null;
@@ -78,19 +76,14 @@ class _ListContentState extends State<ListContent> {
     var listTiles= <Widget>[];
     //print(widget.list['entrylist'][0].toString());
     widget.list['entrylist'].forEach((li){
-      
-          print(li['tags'].length);
-          var tagsTitle = '';
-          
-           
-            if( li['tags'].length > 1){
-              tagsTitle =li['tags'][0]['title'] +'/' +li['tags'][1]['title'];
-            } else {
-              tagsTitle += li['tags'][0]['title'];
-            }
-            
-            
-          
+        var tagsTitle = '';
+        for(var i=0;i<li['tags'].length;i++){
+          if(tagsTitle !=''){
+              tagsTitle +='/'+li['tags'][i]['title'];
+          } else{
+              tagsTitle +=li['tags'][i]['title'];
+          }
+        }
         listTiles.add(
           Column(
             children: <Widget>[
@@ -111,33 +104,30 @@ class _ListContentState extends State<ListContent> {
                             ),
                           ),
                         ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(0, 20, 5, 0),
-                          child: Text(li['user']['username'])
+                        Expanded(
+                          child: 
+                           Container(
+                            margin: EdgeInsets.fromLTRB(0, 20, 5, 0),
+                            child: Text(
+                              li['user']['username'],
+                              overflow:TextOverflow.ellipsis,
+                              maxLines:1
+                            )
+                          ),
                         )
+                       
                     ],),
                   ),
                   Expanded(
                     flex: 2,
                     child: Container(
-                      child:Flex(
-                        direction: Axis.horizontal,
-                        textDirection: TextDirection.rtl,
-                        children: [
-                          
+                      child:  
                           Text(
                               tagsTitle, //==null ? li['tags'][0]['title']:li['tags'][1]['title']+'/'+li['tags'][0]['title'],
                               overflow:TextOverflow.ellipsis,
                               maxLines:1,
-                              
                               style: TextStyle(),
                             ),
-                           
-                        ]
-                         
-                          
-                        
-                      ),
                       alignment: Alignment.topRight,
                       padding: EdgeInsets.fromLTRB(0, 20, 20, 0)
                     ),
