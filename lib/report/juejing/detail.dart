@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-
+import 'package:hk_app/util/http.dart';
 class Detail extends StatefulWidget {
-  //final list;
-  //Detail({this.list}):super();
+  final list;
+  Detail({this.list}):super();
   @override
   _DetailState createState() => _DetailState();
 }
@@ -11,8 +11,11 @@ class Detail extends StatefulWidget {
 class _DetailState extends State<Detail> {
   @override
   void initState(){
-   // print(widget.list);
+   print(widget.list);
     super.initState();
+    getArticleDetail(objectId:widget.list['objectId']).then((res){
+      
+    });
   }
   Widget build(BuildContext context) {
     return Scaffold(

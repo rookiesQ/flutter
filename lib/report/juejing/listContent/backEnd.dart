@@ -281,7 +281,7 @@ class _ListItemState extends State<ListItem> {
           onTap:(){
             
              Navigator.push(context,MaterialPageRoute(builder:(BuildContext context){
-                return Detail();
+                return Detail(list:widget.listitem);
              }));
           }
     );
