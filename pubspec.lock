@@ -92,6 +92,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "6.5.0"
+  cached_network_image:
+    dependency: transitive
+    description:
+      name: cached_network_image
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.5.1"
   charcode:
     dependency: transitive
     description:
@@ -140,7 +147,7 @@ packages:
       name: csslib
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.16.0"
+    version: "0.15.0"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -188,6 +195,34 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_cache_manager:
+    dependency: transitive
+    description:
+      name: flutter_cache_manager
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.2.0+1"
+  flutter_custom_tabs:
+    dependency: transitive
+    description:
+      name: flutter_custom_tabs
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.4.0"
+  flutter_html_view:
+    dependency: "direct main"
+    description:
+      name: flutter_html_view
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.5.11"
+  flutter_markdown:
+    dependency: transitive
+    description:
+      name: flutter_markdown
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.2.0"
   flutter_spinkit:
     dependency: "direct main"
     description:
@@ -241,7 +276,14 @@ packages:
       name: html
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.14.0+2"
+    version: "0.13.4+2"
+  html2md:
+    dependency: transitive
+    description:
+      name: html2md
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.2.1"
   http:
     dependency: transitive
     description:
@@ -319,6 +361,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.11.3+2"
+  markdown:
+    dependency: transitive
+    description:
+      name: markdown
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.0.3"
   matcher:
     dependency: transitive
     description:
@@ -389,6 +438,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.6.2"
+  path_provider:
+    dependency: transitive
+    description:
+      name: path_provider
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.4.1"
   pedantic:
     dependency: transitive
     description:
@@ -520,6 +576,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.4"
+  synchronized:
+    dependency: transitive
+    description:
+      name: synchronized
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.5.3+2"
   term_glyph:
     dependency: transitive
     description:
@@ -562,6 +625,27 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.1.6"
+  url_launcher:
+    dependency: transitive
+    description:
+      name: url_launcher
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.0.3"
+  utf:
+    dependency: transitive
+    description:
+      name: utf
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.9.0+5"
+  uuid:
+    dependency: transitive
+    description:
+      name: uuid
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.3"
   vector_math:
     dependency: transitive
     description:
@@ -569,6 +653,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.8"
+  video_player:
+    dependency: transitive
+    description:
+      name: video_player
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.7.2"
   vm_service_client:
     dependency: transitive
     description:
