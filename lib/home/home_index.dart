@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// 引入列表组件
+import 'package:hk_app/report/juejing/index.dart';
 class HomeKpi extends StatelessWidget{
   @override
   Widget build (BuildContext context) {
@@ -88,28 +90,13 @@ class MenuState extends State<Menu> {
             ),
           ),
           onTap: () {
-            Navigator.of(context).pushNamed('/juejing');
+            Navigator.push(context,
+                new MaterialPageRoute(builder: (BuildContext context) {
+                  return ListViews();
+                })
+            );
           },
           ),
-         /*InkWell(
-          child: Container(
-            padding: const EdgeInsets.fromLTRB(0,40,0,0),
-            child:Column(
-              children: <Widget>[
-                Icon(
-                  Icons.forum,
-                  size:30,
-                  color:Colors.pink
-                ),
-                SizedBox(height:20),
-                Text("it之家",style:TextStyle(fontSize: 13,color:Colors.black))
-              ],
-            ),
-          ),
-          onTap: () {
-            Navigator.of(context).pushNamed('/it');
-          },
-          ),*/
           
         
       ],

@@ -2,17 +2,38 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'dart:convert';
 import 'package:hk_app/util/http.dart';
+import 'package:hk_app/report/juejing/detail.dart';
 class listContent extends StatefulWidget {
-  final list;
+  dynamic list,_listData;
   listContent(this.list):super();
   @override
   _listContentState createState() => _listContentState();
 }
 
-class _listContentState extends State<listContent> {
-  
+class _listContentState extends State<listContent> with AutomaticKeepAliveClientMixin{
+  @override
+  bool get wantKeepAlive => true;
+  Future<Null> _onRefresh() async{
+    await Future.delayed(Duration(seconds:2),(){
+      print(widget.list.id);
+      getArticle(category:widget.list.id,before: '').then((res){
+        Map<String, dynamic> json = jsonDecode(res);
+        if (json['m']=='ok'){
+           widget._listData.clear();
+          if (json['d']['total'] >0){
+            setState(() {
+              widget._listData=json['d']['entrylist'];
+           
+            });
+            
+          }
+        }
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -32,7 +53,11 @@ class _listContentState extends State<listContent> {
               if (json['m']=='ok'){
                
                 if (json['d']['total'] >0){
-                  return ListContentMore(list: json['d']['entrylist'],id:widget.list.id);
+                  widget._listData =  json['d']['entrylist'];
+                  return RefreshIndicator(
+                    child:ListContentMore(list: widget._listData,id:widget.list.id),
+                    onRefresh: _onRefresh,
+                  );
                 } else {
                   return EmptyData();
                 }
@@ -93,15 +118,19 @@ class ListContentMore extends StatefulWidget {
   _ListContentMoreState createState() => _ListContentMoreState();
 }
 
-class _ListContentMoreState extends State<ListContentMore> {
+class _ListContentMoreState extends State<ListContentMore> with AutomaticKeepAliveClientMixin{
+  @override
+  bool get wantKeepAlive => true;
   bool isPerformingRequest = false;
   ScrollController _scrollController = new ScrollController();
   @override
   void initState(){
     super.initState();
+    print('12312');
     _scrollController.addListener((){
-      if(_scrollController.position.pixels >_scrollController.position.maxScrollExtent){
-        listViewMore(widget.list[widget.list.length-1]['userRankIndex']);
+      var lastPosition = widget.list[widget.list.length-1]['rankIndex'];
+      if(_scrollController.position.pixels >=_scrollController.position.maxScrollExtent){
+        listViewMore(lastPosition);
       }
     });
   }
@@ -129,10 +158,11 @@ class _ListContentMoreState extends State<ListContentMore> {
 
   // 获取和处理下一页的数据
   Widget build(BuildContext context) {
-    print(widget.list.length);
+     super.build(context);
     return ListView.builder(
       itemCount: widget.list.length+1,
       controller:  _scrollController,
+      
       itemBuilder: (BuildContext context ,int position){
         if(position == widget.list.length)
            return Center(
@@ -147,6 +177,7 @@ class _ListContentMoreState extends State<ListContentMore> {
       },
     );
   }
+ 
 }
 
 // 构建listitem单个
@@ -169,10 +200,12 @@ class _ListItemState extends State<ListItem> {
           tagsTitle +=widget.listitem['tags'][i]['title'];
       }
     }
-    return Column(
+    return GestureDetector(
+      child: Column(
             children: <Widget>[
               widget.listitem['user']['avatarLarge']!= null ? Flex(
                 direction: Axis.horizontal,
+              
                 children: <Widget>[
                   Expanded(
                     flex: 2,
@@ -232,17 +265,25 @@ class _ListItemState extends State<ListItem> {
                 child:Text(widget.listitem['title'],style: TextStyle(fontSize: 18),)
               ),
                Container(
+              
                 padding: EdgeInsets.fromLTRB(20, 5, 20, 20),
                 child:Text(
                   widget.listitem['content'],
                   style: TextStyle(fontSize: 14,color: Colors.grey),
                   textAlign: TextAlign.justify,
                   overflow:TextOverflow.ellipsis,
-                  maxLines:3
+                  maxLines:3,
                 )
               ),
                Divider()
             ]
-          );
+          ),
+          onTap:(){
+            
+             Navigator.push(context,MaterialPageRoute(builder:(BuildContext context){
+                return Detail();
+             }));
+          }
+    );
   }
 }
