@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hk_app/util/http.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'dart:convert';
+import 'package:flutter_html_view/flutter_html_view.dart';
 class Detail extends StatefulWidget {
   final list;
   Detail({this.list}):super();
@@ -10,20 +11,23 @@ class Detail extends StatefulWidget {
 }
 
 class _DetailState extends State<Detail> {
+  String content = '';
   @override
   void initState(){
-   print(widget.list.toString());
     super.initState();
     getArticleDetail(objectId:widget.list['objectId']).then((res){
+      Map<String, dynamic> json = jsonDecode(res.toString());
+       setState(() {
+         content = '<body>'+json['d']['content']+'</body>';
+       });
       
+      print(content);
     });
   }
   Widget build(BuildContext context) {
-    return WebviewScaffold(
-      appBar: AppBar(
-        title: Text(widget.list['user']['username']),
-      ),
-      url: widget.list['originalUrl']
+    return Scaffold(
+      appBar: AppBar(title: Text('详情页'),),
+      body: new HtmlView(data:content),
     );
   }
 }

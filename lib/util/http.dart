@@ -28,8 +28,9 @@ var httpHeaders = {
 ///地址数据
 class Address {
   static const String eventHost = 'https://event-storage-api-ms.juejin.im/';
-  static const String timelineHost = 'https://timeline-merger-ms.juejin.im/';
+  static const String timelineHost = 'https://timeline-merger-ms.juejin.im/'; //
   static const String postHost = 'https://post-storage-api-ms.juejin.im/';
+  static const String detailHost = 'https://entry-view-storage-api-ms.juejin.im/';
   static const String msgHost = 'https://short-msg-ms.juejin.im/';
   // static const String updateUrl = 'https://www.pgyer.com/vj2B';
 
@@ -43,7 +44,8 @@ class Address {
 
   ///文章详细
   static article(objectId) {
-    return '${postHost}v1/getDetailData${commonRequest()}&type=entryView&postId=$objectId';
+    //return '${postHost}v1/getDetailData${commonRequest()}&type=entryView&postId=$objectId';
+    return '${detailHost}v1/getEntryView?device_id=8AAF704D-DFFF-4414-972A-33E86F6C49F9&entryId=${objectId}&src=ios';
   }
 
   ///获取分类
@@ -178,7 +180,7 @@ Future getArticle({int limit= 20,String category,dynamic before = ""}) async{
     //Fiddler抓包设置代理
     /*(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
       client.findProxy = (url){
-        return "PROXY 172.31.61.75:8888";
+        return "PROXY 192.168.0.100:8888";
       };
       //抓Https包设置
       client.badCertificateCallback =
@@ -186,6 +188,7 @@ Future getArticle({int limit= 20,String category,dynamic before = ""}) async{
     };*/
     dio.options.headers = {
        "X-Agent": "Juejin/Web"
+       
     };
     final String url =
         'https://timeline-merger-ms.juejin.im/v1/get_entry_by_rank?&src=web&before=${before}&limit=20&category=${category}';
@@ -211,13 +214,13 @@ Future getArticleDetail({objectId:''}) async{
           (X509Certificate cert, String host, int port) => true;
     };*/
     dio.options.headers = {
-       "X-Agent": "Juejin/Web"
+       "X-Agent": "Juejin/Web",
+       'Host': 'entry-view-storage-api-ms.juejin.im'
     };
     final String url = Address.article(objectId);
     final response = await dio.get(Uri.encodeFull(url));
-    print(response);
     return new Future((){
-      return response.toString();
+      return response;
       }
     );
   
@@ -247,7 +250,7 @@ Future getCategories() async {
     //Fiddler抓包设置代理
     /*(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
       client.findProxy = (url){
-        return "PROXY 172.31.61.75:8888";
+        return "PROXY 192.168.0.100:8888";
       };
       //抓Https包设置
       client.badCertificateCallback =
