@@ -202,16 +202,19 @@ Future getArticleDetail({objectId:''}) async{
    Dio dio = new Dio();
     
     //Fiddler抓包设置代理
-    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
+    /*(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
       client.findProxy = (url){
-        return "PROXY 172.31.61.75:8888";
+        return "PROXY 192.168.0.100:8888";
       };
       //抓Https包设置
       client.badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
+    };*/
+    dio.options.headers = {
+       "X-Agent": "Juejin/Web"
     };
-    final String url = Address.article(objectId);  
-    final response = await dio.get(url);
+    final String url = Address.article(objectId);
+    final response = await dio.get(Uri.encodeFull(url));
     print(response);
     return new Future((){
       return response.toString();
