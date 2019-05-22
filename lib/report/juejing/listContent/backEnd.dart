@@ -12,10 +12,7 @@ class listContent extends StatefulWidget {
   @override
   _listContentState createState() => _listContentState();
 }
-
 class _listContentState extends State<listContent> with AutomaticKeepAliveClientMixin{
-  @override
-  bool get wantKeepAlive => true;
   Future<Null> _onRefresh() async{
     await Future.delayed(Duration(seconds:2),(){
       print(widget.list.id);
@@ -26,7 +23,6 @@ class _listContentState extends State<listContent> with AutomaticKeepAliveClient
           if (json['d']['total'] >0){
             setState(() {
               widget._listData=json['d']['entrylist'];
-           
             });
             
           }
@@ -35,6 +31,7 @@ class _listContentState extends State<listContent> with AutomaticKeepAliveClient
     });
   }
   @override
+  bool get wantKeepAlive => true;
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: getArticle(category:widget.list.id),
@@ -78,38 +75,6 @@ class _listContentState extends State<listContent> with AutomaticKeepAliveClient
   }
 }
 
-// 构建未获取数据渲染界面
-class StateNone extends StatefulWidget {
-  @override
-  _StateNoneState createState() => _StateNoneState();
-}
-
-class _StateNoneState extends State<StateNone> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text('加载中'),),
-    );
-  }
-}
-// 构建未获取数据渲染界面
-class EmptyData extends StatefulWidget {
-  @override
-  _EmptyDataState createState() => _EmptyDataState();
-}
-
-class _EmptyDataState extends State<EmptyData> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text('暂无数据'),),
-    );
-  }
-}
-
-// 加载列表数据
-
-
 class ListContentMore extends StatefulWidget {
   final list;
   final id;
@@ -119,14 +84,11 @@ class ListContentMore extends StatefulWidget {
 }
 
 class _ListContentMoreState extends State<ListContentMore> with AutomaticKeepAliveClientMixin{
-  @override
-  bool get wantKeepAlive => true;
+ 
   bool isPerformingRequest = false;
   ScrollController _scrollController = new ScrollController();
-  @override
   void initState(){
     super.initState();
-    print('12312');
     _scrollController.addListener((){
       var lastPosition = widget.list[widget.list.length-1]['rankIndex'];
       if(_scrollController.position.pixels >=_scrollController.position.maxScrollExtent){
@@ -134,7 +96,8 @@ class _ListContentMoreState extends State<ListContentMore> with AutomaticKeepAli
       }
     });
   }
-
+   @override
+  bool get wantKeepAlive => true;
   // 获取下一页的数据
   void listViewMore(last){
     if(!isPerformingRequest){
@@ -171,119 +134,139 @@ class _ListContentMoreState extends State<ListContentMore> with AutomaticKeepAli
                 child: new CircularProgressIndicator(),
               ),
            );
-        else 
-          return  ListItem(listitem:widget.list[position]);
-        
+        else {
+          var tagsTitle = '';
+          for(var i=0;i<widget.list[position]['tags'].length;i++){
+            if(tagsTitle !=''){
+                tagsTitle +='/'+widget.list[position]['tags'][i]['title'];
+            } else{
+                tagsTitle +=widget.list[position]['tags'][i]['title'];
+            }
+          }
+          return  GestureDetector(
+            child: Column(
+                  children: <Widget>[
+                    widget.list[position]['user']['avatarLarge']!= null ? Flex(
+                      direction: Axis.horizontal,
+                    
+                      children: <Widget>[
+                        Expanded(
+                          flex: 2,
+                          child: Row(children: <Widget>[
+                            Container(
+                                margin: EdgeInsets.fromLTRB(20, 20, 5, 0),
+                                child: ClipOval(
+                                  child: widget.list[position]['user']['avatarLarge']!= null ? 
+                                    Image.network(
+                                      widget.list[position]['user']['avatarLarge'],
+                                      width: 20,
+                                      height:20,
+                                      fit:BoxFit.fill,
+                                    )
+                                    : 
+                                    Image(
+                                      image: AssetImage("assets/images/common/my_portrait.png"),
+                                      width: 20,
+                                      height: 20,
+                                      fit:BoxFit.fill,
+                                    ),
+                                ),
+                              ),
+                              Expanded(
+                                child: 
+                                Container(
+                                  margin: EdgeInsets.fromLTRB(0, 20, 5, 0),
+                                  child: Text(
+                                    widget.list[position]['user']['username'],
+                                    overflow:TextOverflow.ellipsis,
+                                    maxLines:1
+                                  )
+                                ),
+                              )
+                            
+                          ],),
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            child:  
+                                Text(
+                                    tagsTitle,
+                                    overflow:TextOverflow.ellipsis,
+                                    maxLines:1,
+                                    style: TextStyle(),
+                                  ),
+                            alignment: Alignment.topRight,
+                            padding: EdgeInsets.fromLTRB(0, 20, 20, 0)
+                          ),
+                        )
+                      
+                    ],) : Text(''),
+                    Container(
+                      padding: EdgeInsets.fromLTRB(20, 5, 20, 0),
+                      alignment: Alignment.topLeft,
+                      child:Text(widget.list[position]['title'],style: TextStyle(fontSize: 18),)
+                    ),
+                    Container(
+                    
+                      padding: EdgeInsets.fromLTRB(20, 5, 20, 20),
+                      child:Text(
+                        widget.list[position]['content'],
+                        style: TextStyle(fontSize: 14,color: Colors.grey),
+                        textAlign: TextAlign.justify,
+                        overflow:TextOverflow.ellipsis,
+                        maxLines:3,
+                      )
+                    ),
+                    Divider()
+                  ]
+                ),
+                onTap:(){
+                  print(ModalRoute.of(context).isActive);
+                  print(ModalRoute.of(context).isActive);
+                  //ModalRoute.of(context).isActive
+                  Navigator.push(context,MaterialPageRoute(builder:(BuildContext context){
+                      
+                      return Detail(list:widget.list[position]);
+                  }));
+                }
+          );
+        }
       },
     );
   }
  
 }
 
-// 构建listitem单个
-class ListItem extends StatefulWidget {
-  final listitem;
-  ListItem({this.listitem}):super();
+
+
+// 构建未获取数据渲染界面
+class StateNone extends StatefulWidget {
   @override
-  _ListItemState createState() => _ListItemState();
+  _StateNoneState createState() => _StateNoneState();
 }
 
-class _ListItemState extends State<ListItem> {
-
+class _StateNoneState extends State<StateNone> {
   @override
   Widget build(BuildContext context) {
-    var tagsTitle = '';
-    for(var i=0;i<widget.listitem['tags'].length;i++){
-      if(tagsTitle !=''){
-          tagsTitle +='/'+widget.listitem['tags'][i]['title'];
-      } else{
-          tagsTitle +=widget.listitem['tags'][i]['title'];
-      }
-    }
-    return GestureDetector(
-      child: Column(
-            children: <Widget>[
-              widget.listitem['user']['avatarLarge']!= null ? Flex(
-                direction: Axis.horizontal,
-              
-                children: <Widget>[
-                  Expanded(
-                    flex: 2,
-                    child: Row(children: <Widget>[
-                       Container(
-                          margin: EdgeInsets.fromLTRB(20, 20, 5, 0),
-                          child: ClipOval(
-                            child: widget.listitem['user']['avatarLarge']!= null ? 
-                              Image.network(
-                                widget.listitem['user']['avatarLarge'],
-                                width: 20,
-                                height:20,
-                                fit:BoxFit.fill,
-                              )
-                              : 
-                              Image(
-                                image: AssetImage("assets/images/common/my_portrait.png"),
-                                width: 20,
-                                height: 20,
-                                fit:BoxFit.fill,
-                              ),
-                          ),
-                        ),
-                        Expanded(
-                          child: 
-                           Container(
-                            margin: EdgeInsets.fromLTRB(0, 20, 5, 0),
-                            child: Text(
-                              widget.listitem['user']['username'],
-                              overflow:TextOverflow.ellipsis,
-                              maxLines:1
-                            )
-                          ),
-                        )
-                       
-                    ],),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      child:  
-                          Text(
-                              tagsTitle,
-                              overflow:TextOverflow.ellipsis,
-                              maxLines:1,
-                              style: TextStyle(),
-                            ),
-                      alignment: Alignment.topRight,
-                      padding: EdgeInsets.fromLTRB(0, 20, 20, 0)
-                    ),
-                  )
-                 
-              ],) : Text(''),
-              Container(
-                padding: EdgeInsets.fromLTRB(20, 5, 20, 0),
-                alignment: Alignment.topLeft,
-                child:Text(widget.listitem['title'],style: TextStyle(fontSize: 18),)
-              ),
-               Container(
-              
-                padding: EdgeInsets.fromLTRB(20, 5, 20, 20),
-                child:Text(
-                  widget.listitem['content'],
-                  style: TextStyle(fontSize: 14,color: Colors.grey),
-                  textAlign: TextAlign.justify,
-                  overflow:TextOverflow.ellipsis,
-                  maxLines:3,
-                )
-              ),
-               Divider()
-            ]
-          ),
-          onTap:(){
-            
-             Navigator.push(context,MaterialPageRoute(builder:(BuildContext context){
-                return Detail(list:widget.listitem);
-             }));
-          }
+    return Container(
+      child: Center(child: Text('加载中'),),
     );
   }
 }
+// 构建未获取数据渲染界面
+class EmptyData extends StatefulWidget {
+  @override
+  _EmptyDataState createState() => _EmptyDataState();
+}
+
+class _EmptyDataState extends State<EmptyData> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(child: Text('暂无数据'),),
+    );
+  }
+}
+
+// 加载列表数据

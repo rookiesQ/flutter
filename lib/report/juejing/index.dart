@@ -48,7 +48,28 @@ class ListState extends State<ListViews>{
                           text: li.name,
                         ));
                     });
-                    return Body(tabs:tabs,tabContent:tabContent);
+                    return IndexedStack(
+                      index: 0,
+                      children: <Widget>[
+                        DefaultTabController(
+                          length: tabs.length,
+                          child: Scaffold(
+                            appBar: AppBar(
+                              title: Text("掘金",style: TextStyle(color: Colors.white)),
+                              bottom: TabBar(
+                                tabs: tabs,
+                                indicatorSize:TabBarIndicatorSize.label,
+                                isScrollable: true,
+                              ),
+                            ),
+                            body: new TabBarView(
+                              children: tabContent,
+                            )
+                          ),
+                        ),
+                       
+                      ],
+                    );
                   } else {
                     return StateNone();
                   }
@@ -66,41 +87,7 @@ class ListState extends State<ListViews>{
 }
 // first Page 
  
-// 
-class Body extends StatefulWidget {
-  final tabs;
-  final tabContent;
- @override
-  Body({this.tabs,this.tabContent}):super();
-  _BodyState createState() => _BodyState();
-}
 
-class _BodyState extends State<Body> {
-  @override
-  Widget build(BuildContext context) {
-    return IndexedStack(
-      children: <Widget>[
-        DefaultTabController(
-          length: widget.tabs.length,
-          child: Scaffold(
-            appBar: AppBar(
-              title: Text("掘金",style: TextStyle(color: Colors.white)),
-              bottom: TabBar(
-                tabs: widget.tabs,
-                indicatorSize:TabBarIndicatorSize.label,
-                isScrollable: true,
-              ),
-            ),
-            body: new TabBarView(
-              children: widget.tabContent,
-            )
-          ),
-        ),
-
-      ],
-    );
-  }
-}
 // 构建未获取数据渲染界面
 class StateNone extends StatefulWidget {
   @override
