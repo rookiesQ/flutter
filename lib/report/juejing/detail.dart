@@ -15,6 +15,9 @@ class _DetailState extends State<Detail> {
   @override
   void initState(){
     super.initState();
+    getData();
+  }
+  void getData() {
     getArticleDetail(objectId:widget.list['objectId']).then((res){
       Map<String, dynamic> json = jsonDecode(res.toString());
        setState(() {

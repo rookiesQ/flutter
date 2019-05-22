@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 import 'package:hk_app/report/juejing/listContent/backEnd.dart';
 import 'package:hk_app/util/http.dart';
 import 'package:hk_app/data/category.dart';
+
 import 'dart:convert';
 class ListViews extends StatefulWidget{
   @override
@@ -76,21 +78,26 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: widget.tabs.length,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text("掘金",style: TextStyle(color: Colors.white)),
-          bottom: TabBar(
-            tabs: widget.tabs,
-            indicatorSize:TabBarIndicatorSize.label,
-            isScrollable: true,
+    return IndexedStack(
+      children: <Widget>[
+        DefaultTabController(
+          length: widget.tabs.length,
+          child: Scaffold(
+            appBar: AppBar(
+              title: Text("掘金",style: TextStyle(color: Colors.white)),
+              bottom: TabBar(
+                tabs: widget.tabs,
+                indicatorSize:TabBarIndicatorSize.label,
+                isScrollable: true,
+              ),
+            ),
+            body: new TabBarView(
+              children: widget.tabContent,
+            )
           ),
         ),
-        body: new TabBarView(
-          children: widget.tabContent,
-        )
-      ),
+
+      ],
     );
   }
 }

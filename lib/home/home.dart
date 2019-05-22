@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:hk_app/util/http.dart' as http;
 import '../home/home_index.dart';
 import '../home/home_page.dart';
+import '../report/juejing/index.dart';
 import 'package:hk_app/login/login.dart';
 // 引入列表组件
 import 'package:hk_app/report/web/webView.dart';
@@ -291,6 +292,7 @@ class _HomeWidgetState extends State<HomeWidget>{
   void initState() {
     list 
       ..add(HomeKpi())
+      ..add(ListViews())
       ..add( HomeMy());
       super.initState();
   }
@@ -315,6 +317,10 @@ class _HomeWidgetState extends State<HomeWidget>{
             icon: Icon(IconData(0xe6ce,fontFamily:'AppIconBase'),size:20),
             title:Text('喜好',style: TextStyle(fontSize: 14.0))
           ),BottomNavigationBarItem(
+            icon: Icon(Icons.book,size:20),
+            title:Text('掘金',style: TextStyle(fontSize: 14.0))
+          ),
+          BottomNavigationBarItem(
             icon: Icon(IconData(0xe61e,fontFamily:'AppIconFonts'),size:20),
             title:Text('单词',style: TextStyle(fontSize: 14.0))
           )
