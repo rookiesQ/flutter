@@ -46,10 +46,10 @@ class MyCustomLoadingDialog extends StatelessWidget {
       duration: insetAnimationDuration,
       curve: insetAnimationCurve,
       child: MediaQuery.removeViewInsets(
-        removeLeft: true,
-        removeTop: true,
-        removeRight: true,
-        removeBottom: true,
+        removeLeft: false,
+        removeTop: false,
+        removeRight: false,
+        removeBottom: false,
         context: context,
         child: Center(
           child: SizedBox(
