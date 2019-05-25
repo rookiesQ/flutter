@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import '../home/home_index.dart';
 import './home_my.dart';
 import '../report/juejing/index.dart';
 import 'package:hk_app/report/intimate/intimate.dart';
-// 引入列表组件
-import 'package:hk_app/report/web/webView.dart';
+
 
 class HomeApp extends StatefulWidget{
     @override
@@ -12,7 +12,20 @@ class HomeApp extends StatefulWidget{
 }
 class HomeAppState extends State<HomeApp> {
     bool showHead = true;
-    
+    final drawHeader = DrawerHeader(
+      decoration: BoxDecoration(
+        color: Colors.blue
+      ),
+      child: Center(
+        child: SizedBox(
+          width: 60,
+          height:60,
+          child: CircleAvatar(
+            child:Text('qiang',style:TextStyle(color:Colors.white))
+          )
+        )
+      )
+    );
     @override
     void initState() {
       
@@ -40,14 +53,85 @@ class HomeAppState extends State<HomeApp> {
                 elevation: 0.5
               ): null,
               drawer: new Drawer(
-                child: Text('12')
+                child: ListView(
+                  children: <Widget>[
+                    drawHeader,
+                    InkWell(
+                      onTap: () {
+                        print(RouteObserver());
+                       Navigator.of(context).pushNamed('flutter');
+                      },
+                      child: Container(
+                        padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
+                        decoration: BoxDecoration(
+                          border: new Border(
+                            bottom: BorderSide(
+                              color: Color(0xFFf2f2f2)
+                            )
+                          )
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Icon(IconData(59530, fontFamily: 'MaterialIcons'),size:20,color:Colors.purple),
+                            Container(
+                              margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                              child: Text("flutter中文网",style: TextStyle(fontSize: 14),),
+                            ),
+                            Expanded(
+                              child:  Container(
+                                alignment: Alignment.bottomRight,
+                                child: Icon(
+                                    IconData(58828, fontFamily: 'MaterialIcons',),size:26,color:Color(0xFFdddddd)
+                                ),
+                              )
+                            )
+                          ],
+                        )
+                    
+                      )
+                    ),
+                    InkWell(
+                      onTap: () {
+                        print(RouteObserver());
+                        Navigator.of(context).pushNamed('typescript');
+                      },
+                      child: Container(
+                        padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
+                        decoration: BoxDecoration(
+                          border: new Border(
+                            bottom: BorderSide(
+                              color: Color(0xFFf2f2f2)
+                            )
+                          )
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Icon(Icons.bookmark,size:20,color:Color.fromRGBO(229, 93, 124, 1)),
+                            Container(
+                              margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                              child: Text("typescript中文网",style: TextStyle(fontSize: 14),),
+                            ),
+                            Expanded(
+                              child:  Container(
+                                alignment: Alignment.bottomRight,
+                                child: Icon(
+                                    IconData(58828, fontFamily: 'MaterialIcons',),size:26,color:Color(0xFFdddddd)
+                                ),
+                              )
+                            )
+                          ],
+                        )
+                    
+                      )
+                    ),
+                    
+                  ],
+                )
               ),
               body: new HomeWidget(callBack: (value) => setHead(value)),
               resizeToAvoidBottomPadding: false,
             ),
             routes: <String, WidgetBuilder>{
-              '/typescript':(_) => WebViewPage(title: 'TypeScript学习',url: 'https://www.tslang.cn/'),
-              '/flutter':(_) => WebViewPage(title: 'Flutter中文网',url: 'https://flutterchina.club/'),
                "intimate": (BuildContext context) => new Intimate()
             },
             

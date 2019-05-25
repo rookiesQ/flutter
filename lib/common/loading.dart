@@ -4,16 +4,13 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-dynamic  _context1 = BuildContext;
+dynamic  _context1;
 class LoadingPage {
   final BuildContext _context;
-  bool loadingStatu = false;
   LoadingPage(this._context);
  
   ///打开loading
   void show() {
-      loadingStatu = true;
-
      showCupertinoDialog(
         context: _context,
         builder: (context) {
@@ -24,7 +21,6 @@ class LoadingPage {
  
   ///关闭loading
   void close() {
-    print(_context);
      //Navigator.of(_context).pop();
      Future.delayed(
           Duration(milliseconds: 200 ),

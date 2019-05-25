@@ -34,45 +34,8 @@ class MenuState extends State<Menu> {
       mainAxisSpacing: 0,//竖向间距
       crossAxisSpacing: 0,//横向间距
       children: <Widget>[
-        InkWell(
-          child:Container(
-            padding: const EdgeInsets.fromLTRB(0,40,0,0),
-            child:Column(
-              children: <Widget>[
-                Icon(
-                  IconData(59530, fontFamily: 'MaterialIcons'),
-                  color:Colors.purple,
-                  size: 30,
-                ),
-                SizedBox(height:20),
-                Text("flutter中文网",style:TextStyle(fontSize: 13,color:Colors.black))
-              ],
-            ),
-          ),
-          onTap: (){
-            Navigator.of(context).pushNamed('/flutter');
-          },
-        ),
        
-        InkWell(
-          child:Container(
-            padding: const EdgeInsets.fromLTRB(0,40,0,0),
-            child: Column(
-              children: <Widget>[
-                Icon(
-                  Icons.bookmark,
-                  size:30,
-                  color:Color.fromRGBO(229, 93, 124, 1)
-                ),
-                SizedBox(height:20),
-                Text("typescript中文网",style:TextStyle(fontSize: 13,color:Colors.black))
-              ],
-            ),
-          ),
-          onTap: () {
-            Navigator.of(context).pushNamed('/typescript');
-          },
-        ),
+        
           InkWell(
           child: Container(
             padding: const EdgeInsets.fromLTRB(0,40,0,0),
