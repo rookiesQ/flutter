@@ -23,8 +23,6 @@ class _DetailState extends State<Detail> {
        setState(() {
          content = '<body>'+json['d']['content']+'</body>';
        });
-      
-      print(content);
     });
   }
   Widget build(BuildContext context) {

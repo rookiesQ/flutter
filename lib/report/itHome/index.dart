@@ -9,6 +9,7 @@ class ItHome extends StatefulWidget{
 }
 class ItHomeState extends State<ItHome>{
   dynamic currentIndex = 1;
+  ScrollController _controller = new ScrollController();
   List tabContent = <Widget>[];
   List tabs = <Tab>[
   ];
@@ -22,11 +23,24 @@ class ItHomeState extends State<ItHome>{
          listD =res['Result'];
        });
      });
+     _controller.addListener((){
+       print(this._controller.position.pixels);
+       if (_controller.position.pixels >= _controller.position.minScrollExtent){
+         currentIndex ++;
+         listData().then((res){
+           print(res);
+         });
+       }
+     });
   }
+  // 获取更多的数据
+  listMore () {
+
+  }
+  // 获取的数据
   Future listData() async{
-    //
     final response = await http.get(
-      'https://m.ithome.com/api/news/newslistpageget?Tag=&ot=1558429933000&page=0');
+      'https://m.ithome.com/api/news/newslistpageget?Tag=&ot=1558429933000&page=${this.currentIndex}');
     if (response.statusCode == 200) {
       // If the call to the server was successful, parse the JSON
       var decode = json.decode(response.body);
@@ -40,7 +54,15 @@ class ItHomeState extends State<ItHome>{
       ),
       body: ListView.builder(
         itemCount: listD.length,
+        controller: _controller,
         itemBuilder: (BuildContext context ,int position){
+            var expanded = Expanded(
+                    flex: 3,
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(10, 0, 0,0),
+                      child: Text(listD[position]['title']),
+                    ),
+                  );
             return  Container(
               padding: EdgeInsets.fromLTRB(5, 10, 10, 5),
               child: Row(
@@ -53,15 +75,7 @@ class ItHomeState extends State<ItHome>{
                       height:100
                     ),
                   ),
-                  Expanded(
-                    flex: 3,
-                    child: Container(
-                      padding: EdgeInsets.fromLTRB(10, 0, 0,0),
-                      child: Text(listD[position]['title']),
-                    ),
-                  )
-                  
-                  
+                  expanded
                 ],
               )
             );
