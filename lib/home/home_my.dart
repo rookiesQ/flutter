@@ -13,11 +13,9 @@ import '../common/loading.dart';
 class HomeMy extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         body: HomeContent()
-      )
-    );
+      );
   }
 }
 class HomeContent extends StatefulWidget {
@@ -130,7 +128,7 @@ class _HomeContentState extends State<HomeContent> {
                 InkWell(
                   onTap: () {
                     print(RouteObserver());
-                     // Navigator.of(context).pushNamed("intimate");
+                     Navigator.of(context).pushNamed("intimate");
                   },
                   child: Container(
                     padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
@@ -228,27 +226,30 @@ class _HomeContentState extends State<HomeContent> {
                           "UserID" : userInfoData.data.userID ,
                           "SystemCall" :  false
                         };
-                        //loadingPage.close();
-                        print(bodyParam);
-                        /*http.ajaxRequest(bodyParam, "/user/Logout").then((res){
-                         
-                          /*if (res.code == 200 ){
+                        /*Future.delayed(Duration(microseconds: 200)).then((res){
+                          loadingPage.close();
+                        });*/
+                       
+                        http.ajaxRequest(bodyParam, "/user/Logout").then((res){
+                         loadingPage.close();
+                          if (res.code == 200 ){
                             Fluttertoast.showToast(
                                 msg: '注销成功',
                                  gravity: ToastGravity.CENTER
                             );
                             new Future.delayed(const Duration(milliseconds: 1000)).then((res) {
-                                  // Navigator.of(context).canPop();
-                                   
-                                   // new MaterialPageRoute(
-                                       // builder: (context) => new LoginView());
-                                    
-                                   // (route) => route == null);
+                                  
+                                   Navigator.of(context).pushAndRemoveUntil(
+                                    new MaterialPageRoute(
+                                        builder: (context) => LoginView()
+                                    ),
+                                    (route) => route == null
+                                  );
                               });
                            
-                          }*/
+                          }
                           
-                        });*/
+                        });
                         
 
                   },

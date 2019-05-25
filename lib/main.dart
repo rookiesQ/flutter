@@ -4,7 +4,7 @@ import './loading.dart';
 import 'package:flutter/services.dart';
 import 'package:hk_app/home/home.dart';
 import 'package:hk_app/login/login.dart';
-import 'package:hk_app/report/intimate/intimate.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -34,8 +34,7 @@ class MyAppState extends State<MyApp> {
       routes: <String, WidgetBuilder>{
         "home": (BuildContext context) => new HomeApp(),
         "splash": (BuildContext context) => new SplashScreen(),
-        "login": (BuildContext context) => new LoginView(),
-        "intimate": (BuildContext context) => new Intimate()
+        "login": (BuildContext context) => new LoginView()
       },
       home: new LoadingPage(),
     );

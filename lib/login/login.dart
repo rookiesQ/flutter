@@ -33,6 +33,7 @@ class _LoginView extends State<LoginView> {
   String errorData = '';
   
   loginPage () {
+   
     LoadingPage loadingPage = LoadingPage(context);
     if (_pwdcontroller.text.length>0 && _phonecontroller.text.length >0){
         loadingPage.show();

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../home/home_index.dart';
 import './home_my.dart';
 import '../report/juejing/index.dart';
+import 'package:hk_app/report/intimate/intimate.dart';
 // 引入列表组件
 import 'package:hk_app/report/web/webView.dart';
 
@@ -47,6 +48,7 @@ class HomeAppState extends State<HomeApp> {
             routes: <String, WidgetBuilder>{
               '/typescript':(_) => WebViewPage(title: 'TypeScript学习',url: 'https://www.tslang.cn/'),
               '/flutter':(_) => WebViewPage(title: 'Flutter中文网',url: 'https://flutterchina.club/'),
+               "intimate": (BuildContext context) => new Intimate()
             },
             
       );
