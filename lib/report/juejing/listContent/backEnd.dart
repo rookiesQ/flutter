@@ -121,11 +121,11 @@ class _ListContentMoreState extends State<ListContentMore> with AutomaticKeepAli
   Widget build(BuildContext context) {
      super.build(context);
     return ListView.builder(
-      itemCount: widget.list.length+1,
+      itemCount: widget.list.length,
       controller:  _scrollController,
       
       itemBuilder: (BuildContext context ,int position){
-        if(position == widget.list.length)
+        if(position+1 == widget.list.length)
            return Center(
              child:new Opacity(
                 opacity: isPerformingRequest ? 1.0 : 0.0,
