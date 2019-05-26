@@ -20,14 +20,13 @@ class _LoginView extends State<LoginView> {
   // 错误信息
   @ override
   void initState() {
-    
+    super.initState();
     if (Platform.isIOS){
       systemType = 'ios';
     }
     if (Platform.isAndroid){
       systemType = 'android';
     }
-    print(systemType);
   }
   bool errorStatu = false;
   String errorData = '';
@@ -46,6 +45,7 @@ class _LoginView extends State<LoginView> {
           if (data == null) {
             Fluttertoast.showToast(
                 msg: data.toString(),
+                fontSize: 14,
                 gravity: ToastGravity.CENTER
             );
             return;
@@ -83,7 +83,8 @@ class _LoginView extends State<LoginView> {
               });
               Fluttertoast.showToast(
                 msg: '登录成功',
-                  gravity: ToastGravity.CENTER
+                fontSize: 14,
+                gravity: ToastGravity.CENTER
               );
               new Future.delayed(const Duration(milliseconds: 1000)).then((res2){
                 Navigator.of(context).pushAndRemoveUntil(
@@ -111,6 +112,7 @@ class _LoginView extends State<LoginView> {
         if (_phonecontroller.text.length == 0){
           Fluttertoast.showToast(
               msg: "请填写用户名",
+              fontSize: 14,
               gravity: ToastGravity.CENTER
           );
           return;
@@ -118,6 +120,7 @@ class _LoginView extends State<LoginView> {
         if (_pwdcontroller.text.length == 0){
           Fluttertoast.showToast(
               msg: "请填写密码",
+              fontSize: 14,
               gravity: ToastGravity.CENTER
           );
           return;
