@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:hk_app/report/web/webView.dart';
 class ItHome extends StatefulWidget{
   @override
   ItHomeState createState() => ItHomeState();
@@ -97,24 +98,32 @@ class ItHomeState extends State<ItHome>{
                   ),
               );
             } else {
-              return Container(
-                padding: EdgeInsets.fromLTRB(5, 10, 10, 5),
-                child: Row(
-                children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: Image.network(
-                        listD[position]['image'],
-                        width:100,
-                        height:100
+              return InkWell(
+                child:Container(
+                  padding: EdgeInsets.fromLTRB(5, 10, 10, 5),
+                  child: Row(
+                  children: <Widget>[
+                      Expanded(
+                        flex: 1,
+                        child: Image.network(
+                          listD[position]['image'],
+                          width:100,
+                          height:100
+                        ),
                       ),
-                    ),
-                    expanded
-                  ],
-                )
+                      expanded
+                    ],
+                  )
+                ),
+                onTap: (){
+                  Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (context){
+                      return WebViewPage(title: listD[position]['title'],url: listD[position]['WapNewsUrl']);
+                    }
+                  ));
+                },
               );
-            }
-            
+            }  
         },
       )
     );
