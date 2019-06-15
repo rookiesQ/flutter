@@ -278,7 +278,6 @@ class _LoginView extends State<LoginView> {
                      errorStatu ? Text(errorData,style: TextStyle(color:Colors.red),textAlign: TextAlign.left,): Text("")
                   ],
                 ),
-               
                 SizedBox(height:40),
                 // 登录按钮
                 new SizedBox(
@@ -307,6 +306,7 @@ class _LoginView extends State<LoginView> {
                   )
                 ),
                 SizedBox(height: 120),
+               
                 Text(
                     "恒康科技Copyright©2019",
                     textAlign: TextAlign.center,

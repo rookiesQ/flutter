@@ -14,6 +14,7 @@ class ItHomeState extends State<ItHome>{
   List tabContent = <Widget>[];
   List tabs = <Tab>[];
   List listD =[];
+  var  index = 0;
   bool isPerformingRequest = false;
   @override
   void initState(){
@@ -21,6 +22,7 @@ class ItHomeState extends State<ItHome>{
      listData().then((res){
        setState(() {
          listD =res['Result'];
+         //print(listD);
        });
      });
      _controller.addListener((){
@@ -35,8 +37,14 @@ class ItHomeState extends State<ItHome>{
     if(!isPerformingRequest){
       setState(() {
         isPerformingRequest = true;
+          index ++ ;
       });
-      listData().then((res){
+    
+      print(index);
+      var now = new DateTime.now();
+      now = now.add(new Duration(minutes: -60*24*index));
+      var tmp = now.millisecondsSinceEpoch;
+      moreList(tmp).then((res){
           setState(() {
             listD.addAll(res['Result']);
             isPerformingRequest = false;
@@ -56,22 +64,48 @@ class ItHomeState extends State<ItHome>{
       return decode;
     }
   }
+  Future<Null> _onRefresh() async{
+    await Future.delayed(Duration(seconds:2),(){
+       listData().then((res){
+        setState(() {
+          index = 0;
+          listD =res['Result'];
+          //print(listD);
+        });
+      });
+    });
+  }
+  Future moreList(tmp) async{
+    final response = await http.get(
+      'https://m.ithome.com/api/news/newslistpageget?Tag=&ot=${tmp}&page=0');
+    if (response.statusCode == 200) {
+      // If the call to the server was successful, parse the JSON
+      var decode = json.decode(response.body);
+      return decode;
+    }
+  }
   Widget build (BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('it之家')
       ),
-      body: ListView.builder(
+      body: RefreshIndicator(
+        onRefresh: _onRefresh,
+        child:ListView.builder(
         itemCount: listD.length,
         controller: _controller,
         itemBuilder: (BuildContext context ,int position){
             var expanded = Expanded(
                     flex: 3,
+                    
                     child: Container(
                       padding: EdgeInsets.fromLTRB(10, 0, 0,0),
                       child: Column(
+                      
                         children: <Widget>[
-                          Text(listD[position]['title']),
+                          Align(
+                            child:  Text(listD[position]['title'],textAlign: TextAlign.start,style:TextStyle()),
+                          ),
                           Padding(padding: EdgeInsets.all(9),),
                           Row(
                             children: <Widget>[
@@ -81,7 +115,6 @@ class ItHomeState extends State<ItHome>{
                               ),
                               Expanded(
                                 flex:1,
-                                
                                 child: Text(listD[position]['commentcount'].toString()+'评论',style:TextStyle(),textAlign: TextAlign.right,),
                               )
                             ],
@@ -125,6 +158,7 @@ class ItHomeState extends State<ItHome>{
               );
             }  
         },
+      )
       )
     );
   }
